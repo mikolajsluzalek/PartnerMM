@@ -1,22 +1,4 @@
 /**
- * Inicjalizacja obsługi języków
- */
-function initLanguageHandler() {
-    // Sprawdź czy istnieje wcześniej zapisany wybór języka
-    const savedLanguage = localStorage.getItem('selectedLanguage');
-
-    if (savedLanguage) {
-        // Ustaw flagę dla zapisanego języka
-        const path = window.location.pathname;
-        const isInSubdir = path.includes('/pages/');
-        const flagsPath = isInSubdir ? '../assets/images/flags/' : 'assets/images/flags/';
-
-        const currentFlag = document.getElementById('current-flag');
-        if (currentFlag) {
-            currentFlag.setAttribute('src', flagsPath + savedLanguage + '.png');
-        }
-    }
-}/**
  * Main JavaScript File for JobFlex
  * Handles core functionality including loading page components
  */
@@ -34,8 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup form validation
     setupFormValidation();
 
-    // Inicjalizacja obsługi języków
-    initLanguageHandler();
+    // Inicjalizacja obsługi języków - będzie wywołana po załadowaniu nagłówka
 });
 
 /**
@@ -64,6 +45,11 @@ function loadComponent(targetId, componentUrl) {
             // If this is the header, setup the active state for navigation
             if (targetId === 'header-placeholder') {
                 setupActiveNavigation();
+
+                // Initialize language system after the header is loaded
+                if (typeof window.initLanguageSystem === 'function') {
+                    window.initLanguageSystem();
+                }
             }
         })
         .catch(error => {

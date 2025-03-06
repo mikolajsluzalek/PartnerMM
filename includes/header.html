@@ -20,19 +20,19 @@
             <div class="language-selector d-flex align-items-center">
                 <div class="dropdown">
                     <button class="btn dropdown-toggle p-0 bg-transparent border-0" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="../assets/images/flags/pl.png" alt="Polski" width="24" height="18" id="current-flag">
+                        <img src="assets/images/flags/pl.png" alt="Polski" width="24" height="18" id="current-flag">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" onclick="changeLanguage('pl')">
-                            <img src="../assets/images/flags/pl.png" alt="Polski" width="24" height="18" class="me-2" id="pl-flag">
+                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-language="pl">
+                            <img src="assets/images/flags/pl.png" alt="Polski" width="24" height="18" class="me-2" id="pl-flag">
                             <span data-translate="lang_polski">Polski</span>
                         </a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" onclick="changeLanguage('ua')">
-                            <img src="../assets/images/flags/ua.png" alt="Українська" width="24" height="18" class="me-2" id="ua-flag">
+                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-language="ua">
+                            <img src="assets/images/flags/ua.png" alt="Українська" width="24" height="18" class="me-2" id="ua-flag">
                             <span data-translate="lang_ukrainski">Ukraiński</span>
                         </a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" onclick="changeLanguage('en')">
-                            <img src="../assets/images/flags/en.png" alt="English" width="24" height="18" class="me-2" id="en-flag">
+                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-language="en">
+                            <img src="assets/images/flags/en.png" alt="English" width="24" height="18" class="me-2" id="en-flag">
                             <span data-translate="lang_angielski">Angielski</span>
                         </a></li>
                     </ul>
@@ -43,95 +43,47 @@
 </nav>
 
 <script>
-    // Dostosowanie ścieżek w zależności od lokalizacji
+    // Dostosowanie ścieżek po załadowaniu dokumentu
     document.addEventListener('DOMContentLoaded', function() {
-        const path = window.location.pathname;
-        const isInSubdir = path.includes('/pages/');
+        // Sprawdź, czy jesteśmy w podkatalogu
+        const isInSubdir = window.location.pathname.includes('/pages/');
 
+        // Dostosuj ścieżki w menu
         const homeLink = document.getElementById('home-link');
         const pracownicyLink = document.getElementById('pracownicy-link');
         const firmyLink = document.getElementById('firmy-link');
         const kontaktLink = document.getElementById('kontakt-link');
 
-        // Ustaw odpowiednią ścieżkę do flag w zależności od położenia strony
-        const flagsPath = isInSubdir ? '../assets/images/flags/' : 'assets/images/flags/';
-        document.querySelectorAll('.dropdown-menu img').forEach(img => {
-            const src = img.getAttribute('src');
-            const flag = src.substring(src.lastIndexOf('/') + 1);
-            img.setAttribute('src', flagsPath + flag);
-        });
-
-        // Ustaw ścieżkę dla aktualnej flagi
-        const currentFlag = document.getElementById('current-flag');
-        if (currentFlag) {
-            const src = currentFlag.getAttribute('src');
-            const flag = src.substring(src.lastIndexOf('/') + 1);
-            currentFlag.setAttribute('src', flagsPath + flag);
-        }
-
         if (isInSubdir) {
-            // Jesteśmy w podkatalogu - dostosuj ścieżki
-            homeLink.setAttribute('href', '../index.html');
-            pracownicyLink.setAttribute('href', 'dla-pracownikow.html');
-            firmyLink.setAttribute('href', 'dla-firm.html');
-            kontaktLink.setAttribute('href', 'kontakt.html');
+            // Jesteśmy w podkatalogu
+            if (homeLink) homeLink.setAttribute('href', '../index.html');
+            if (pracownicyLink) pracownicyLink.setAttribute('href', 'dla-pracownikow.html');
+            if (firmyLink) firmyLink.setAttribute('href', 'dla-firm.html');
+            if (kontaktLink) kontaktLink.setAttribute('href', 'kontakt.html');
+
+            // Dostosuj ścieżki do flag
+            const flagsPath = '../assets/images/flags/';
+            document.querySelectorAll('#current-flag, #pl-flag, #ua-flag, #en-flag').forEach(img => {
+                if (img) {
+                    const flagName = img.id.replace('current-flag', localStorage.getItem('selectedLanguage') || 'pl')
+                        .replace('-flag', '');
+                    img.setAttribute('src', flagsPath + flagName + '.png');
+                }
+            });
         }
-    });
 
-    // Funkcja zmiany języka
-    function changeLanguage(lang) {
-        // Zapisz wybrany język w localStorage
-        localStorage.setItem('selectedLanguage', lang);
+        // Ustaw aktywny link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+            const href = link.getAttribute('href');
+            const linkPage = href.split('/').pop();
 
-        // Zmień flagę
-        const path = window.location.pathname;
-        const isInSubdir = path.includes('/pages/');
-        const flagsPath = isInSubdir ? '../assets/images/flags/' : 'assets/images/flags/';
-
-        const currentFlag = document.getElementById('current-flag');
-        if (currentFlag) {
-            currentFlag.setAttribute('src', flagsPath + lang + '.png');
-
-            // Zmień tekst alternatywny flagi
-            if (lang === 'pl') {
-                currentFlag.setAttribute('alt', 'Polski');
-            } else if (lang === 'ua') {
-                currentFlag.setAttribute('alt', 'Українська');
-            } else if (lang === 'en') {
-                currentFlag.setAttribute('alt', 'English');
+            if ((currentPage === 'index.html' || currentPage === '') &&
+                (linkPage === 'index.html' || href === './')) {
+                link.classList.add('active-link');
+            } else if (linkPage === currentPage) {
+                link.classList.add('active-link');
             }
-        }
-
-        // Ważne: Wywołaj funkcję tłumaczącą z głównego skryptu
-        if (typeof window.translatePage === 'function') {
-            window.translatePage(lang);
-        } else {
-            console.error('Nie znaleziono funkcji translatePage - tłumaczenie może nie działać!');
-
-            // Stwórz funkcję translatePage na bieżąco, jeśli nie istnieje
-            window.translatePage = function(language) {
-                // Znajdź wszystkie elementy z atrybutem data-translate
-                const elements = document.querySelectorAll('[data-translate]');
-
-                elements.forEach(element => {
-                    const key = element.getAttribute('data-translate');
-                    if (window.translations && window.translations[key] && window.translations[key][language]) {
-                        // Sprawdź, czy element ma atrybut placeholder
-                        if (element.hasAttribute('placeholder')) {
-                            element.setAttribute('placeholder', window.translations[key][language]);
-                        } else {
-                            element.textContent = window.translations[key][language];
-                        }
-                    }
-                });
-            };
-
-            // Spróbuj tłumaczyć stronę z nowo utworzoną funkcją
-            window.translatePage(lang);
-        }
-
-        // Wywołaj zdarzenie zmiany języka, aby inne skrypty mogły zareagować
-        const event = new CustomEvent('languageChanged', { detail: { language: lang } });
-        document.dispatchEvent(event);
-    }
+        });
+    });
 </script>

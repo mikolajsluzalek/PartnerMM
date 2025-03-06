@@ -1,35 +1,4 @@
-<script>
-    // Funkcja pomocnicza do debugowania
-    function debugLanguageSystem() {
-        console.log("Debugowanie systemu językowego...");
-
-        // Sprawdź, czy skrypt translations.js został załadowany
-        console.log("Czy window.translations istnieje:", typeof window.translations !== 'undefined');
-        console.log("Czy window.translatePage istnieje:", typeof window.translatePage === 'function');
-
-        // Sprawdź elementy z atrybutem data-translate
-        const translatableElements = document.querySelectorAll('[data-translate]');
-        console.log("Liczba elementów z data-translate:", translatableElements.length);
-
-        // Wypisz kilka przykładowych elementów
-        if (translatableElements.length > 0) {
-            console.log("Przykładowy element:",
-                translatableElements[0].getAttribute('data-translate'),
-                translatableElements[0].textContent);
-        }
-
-        // Sprawdź, czy funkcja zmiany języka jest dostępna
-        console.log("Czy changeLanguage istnieje:", typeof window.changeLanguage === 'function');
-
-        // Sprawdź zapisany język
-        console.log("Zapisany język:", localStorage.getItem('selectedLanguage') || 'brak');
-    }
-
-    // Wywołaj funkcję debugującą po załadowaniu strony
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(debugLanguageSystem, 1000);
-    });
-</script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
@@ -44,41 +13,6 @@
 <body>
 <!-- Navbar - wczytywany z includes/header.html via JavaScript -->
 <div id="header-placeholder"></div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Ładowanie nagłówka
-        fetch('includes/header.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(html => {
-                document.getElementById('header-placeholder').innerHTML = html;
-
-                // Ustawienie aktywnego linku
-                const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-                const currentPage = window.location.pathname.split('/').pop();
-
-                navLinks.forEach(link => {
-                    // Usunięcie klasy active
-                    link.classList.remove('active-link');
-
-                    // Sprawdzenie czy to jest strona główna
-                    if ((currentPage === '' || currentPage === 'index.html') &&
-                        (link.getAttribute('href') === 'index.html' || link.getAttribute('href') === './')) {
-                        link.classList.add('active-link');
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('Error loading header:', error);
-                document.getElementById('header-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować nagłówka</div>';
-            });
-    });
-</script>
 
 <!-- Hero Section -->
 <section class="hero-section">
@@ -246,8 +180,30 @@
 <!-- Footer - wczytywany z includes/footer.html via JavaScript -->
 <div id="footer-placeholder"></div>
 
+<!-- Skrypty - WAŻNA KOLEJNOŚĆ! -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/translations.js"></script>
+<script src="assets/js/language-manager.js"></script>
+<script src="assets/js/animations.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Ładowanie nagłówka
+        fetch('includes/header.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+                document.getElementById('header-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować nagłówka</div>';
+            });
+
         // Ładowanie stopki
         fetch('includes/footer.html')
             .then(response => {
@@ -265,9 +221,5 @@
             });
     });
 </script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/translations.js"></script>
-<script src="assets/js/animations.js"></script>
 </body>
 </html>
