@@ -1,0 +1,67 @@
+/*
+ * Responsive CSS for JobFlex
+ * Media queries for different screen sizes
+ */
+
+/* Extra small devices (phones, 576px and down) */
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .process-step {
+        font-size: 1.2rem;
+        margin: 0 0.5rem;
+    }
+
+    .process-arrow {
+        margin: 0 0.2rem;
+    }
+
+    .service-card, .solution-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-link {
+        margin: 0 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .service-card, .solution-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .service-icon {
+        font-size: 2.5rem;
+    }
+
+    .solution-icon {
+        font-size: 2rem;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    /* Styles for large devices */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+}

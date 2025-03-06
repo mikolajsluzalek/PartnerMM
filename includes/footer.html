@@ -1,0 +1,67 @@
+<!-- Subscribe Section -->
+<section class="subscribe-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h4 data-translate="newsletter_tytul">ZAPISZ SIĘ DO NEWSLETTERA</h4>
+            </div>
+            <div class="col-md-6">
+                <form class="newsletter-form">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Twój Email" data-translate="newsletter_email" required>
+                        <button class="btn btn-primary" type="submit" data-translate="newsletter_button">GO</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
+                <a href="index.html" class="footer-link" id="home-footer" data-translate="footer_home">HOME</a>
+                <a href="pages/polityka-prywatnosci.html" class="footer-link" id="privacy-footer" data-translate="footer_prywatnosc">POLITYKA PRYWATNOŚCI</a>
+                <a href="pages/mapa-strony.html" class="footer-link" id="sitemap-footer" data-translate="footer_mapa">MAPA STRONY</a>
+                <a href="pages/faq.html" class="footer-link" id="faq-footer" data-translate="footer_faq">FAQ</a>
+                <a href="pages/kontakt.html" class="footer-link" id="contact-footer" data-translate="footer_kontakt">KONTAKT</a>
+            </div>
+            <div class="col-md-6 text-md-end text-center">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="mb-0" data-translate="footer_prawa">© 2025 JobFlex - Agencja Pracy Tymczasowej. Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Dostosowanie ścieżek w zależności od lokalizacji
+    document.addEventListener('DOMContentLoaded', function() {
+        const path = window.location.pathname;
+        const isInSubdir = path.includes('/pages/');
+
+        const homeFooter = document.getElementById('home-footer');
+        const privacyFooter = document.getElementById('privacy-footer');
+        const sitemapFooter = document.getElementById('sitemap-footer');
+        const faqFooter = document.getElementById('faq-footer');
+        const contactFooter = document.getElementById('contact-footer');
+
+        if (isInSubdir) {
+            // Jesteśmy w podkatalogu - dostosuj ścieżki
+            homeFooter.setAttribute('href', '../index.html');
+            privacyFooter.setAttribute('href', 'polityka-prywatnosci.html');
+            sitemapFooter.setAttribute('href', 'mapa-strony.html');
+            faqFooter.setAttribute('href', 'faq.html');
+            contactFooter.setAttribute('href', 'kontakt.html');
+        }
+    });
+</script>

@@ -1,0 +1,273 @@
+<script>
+    // Funkcja pomocnicza do debugowania
+    function debugLanguageSystem() {
+        console.log("Debugowanie systemu językowego...");
+
+        // Sprawdź, czy skrypt translations.js został załadowany
+        console.log("Czy window.translations istnieje:", typeof window.translations !== 'undefined');
+        console.log("Czy window.translatePage istnieje:", typeof window.translatePage === 'function');
+
+        // Sprawdź elementy z atrybutem data-translate
+        const translatableElements = document.querySelectorAll('[data-translate]');
+        console.log("Liczba elementów z data-translate:", translatableElements.length);
+
+        // Wypisz kilka przykładowych elementów
+        if (translatableElements.length > 0) {
+            console.log("Przykładowy element:",
+                translatableElements[0].getAttribute('data-translate'),
+                translatableElements[0].textContent);
+        }
+
+        // Sprawdź, czy funkcja zmiany języka jest dostępna
+        console.log("Czy changeLanguage istnieje:", typeof window.changeLanguage === 'function');
+
+        // Sprawdź zapisany język
+        console.log("Zapisany język:", localStorage.getItem('selectedLanguage') || 'brak');
+    }
+
+    // Wywołaj funkcję debugującą po załadowaniu strony
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(debugLanguageSystem, 1000);
+    });
+</script><!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFlex - Agencja Pracy Tymczasowej</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+<!-- Navbar - wczytywany z includes/header.html via JavaScript -->
+<div id="header-placeholder"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ładowanie nagłówka
+        fetch('includes/header.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+
+                // Ustawienie aktywnego linku
+                const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+                const currentPage = window.location.pathname.split('/').pop();
+
+                navLinks.forEach(link => {
+                    // Usunięcie klasy active
+                    link.classList.remove('active-link');
+
+                    // Sprawdzenie czy to jest strona główna
+                    if ((currentPage === '' || currentPage === 'index.html') &&
+                        (link.getAttribute('href') === 'index.html' || link.getAttribute('href') === './')) {
+                        link.classList.add('active-link');
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+                document.getElementById('header-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować nagłówka</div>';
+            });
+    });
+</script>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-graphics">
+        <!-- Graphics elements would be placed here -->
+    </div>
+    <div class="container hero-content">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="hero-title" data-translate="hero_tytul">ZNAJDŹ ➤ ZATRUDNIJ ➤ ROZWIJAJ</h1>
+                <p class="lead mb-4" data-translate="hero_opis_1">Kompleksowe rozwiązania w rekrutacji pracowników tymczasowych dla Twojego biznesu</p>
+                <p data-translate="hero_opis_2">Oferujemy elastyczne zatrudnienie dopasowane do Twoich potrzeb</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="process-section">
+    <div class="container">
+        <div class="process-steps">
+            <span class="process-step" data-translate="process_znajdz">ZNAJDŹ</span>
+            <span class="process-arrow">➤</span>
+            <span class="process-step" data-translate="process_zatrudnij">ZATRUDNIJ</span>
+            <span class="process-arrow">➤</span>
+            <span class="process-step" data-translate="process_rozwijaj">ROZWIJAJ</span>
+        </div>
+        <h2 class="mt-5 mb-4" data-translate="process_tytul">ROZWIJAJ SWÓJ BIZNES Z ODPOWIEDNIMI LUDŹMI</h2>
+        <p class="lead text-muted mb-0" data-translate="process_opis">REKRUTUJEMY TALENTY DO TYMCZASOWEJ PRACY</p>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="service-title" data-translate="services_znajdz_tytul">ZNAJDŹ</h3>
+                    <p data-translate="services_znajdz_opis">Niezależnie czy potrzebujesz pracownika na zastępstwo, do pracy sezonowej czy na szczyt produkcyjny - znajdziemy dla Ciebie najlepszych kandydatów spełniających Twoje wymagania.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="service-title" data-translate="services_zatrudnij_tytul">ZATRUDNIJ</h3>
+                    <p data-translate="services_zatrudnij_opis">Zajmujemy się całym procesem zatrudnienia - od rekrutacji przez weryfikację, po szkolenia i formalności. Zatrudniamy pracownika na nasz etat i delegujemy go do pracy u Ciebie.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title" data-translate="services_rozwijaj_tytul">ROZWIJAJ</h3>
+                    <p data-translate="services_rozwijaj_opis">Dzięki elastycznym formom zatrudnienia możesz sprawnie reagować na potrzeby rynku, rozwijać swój biznes bez dodatkowych obciążeń administracyjnych i kadrowych.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Code Section -->
+<section class="code-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="mb-4" data-translate="rekrutacja_tytul">Proces rekrutacji krok po kroku</h2>
+                <p class="mb-4" data-translate="rekrutacja_opis">Nasz system zapewnia szybkie i efektywne dopasowanie kandydatów do wymagań klienta</p>
+                <a href="#" class="btn btn-outline-light px-4 py-2" data-translate="rekrutacja_wiecej">Dowiedz się więcej</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="code-block">
+                    <span class="code-green" data-translate="krok1_tytul">Krok 1: Analiza potrzeb</span><br>
+                    <span data-translate="krok1_opis">Określenie wymagań i profilu kandydata</span><br><br>
+                    <span class="code-blue" data-translate="krok2_tytul">Krok 2: Selekcja CV</span><br>
+                    <span data-translate="krok2_opis">Wybór najlepszych kandydatów z bazy</span><br><br>
+                    <span class="code-orange" data-translate="krok3_tytul">Krok 3: Weryfikacja</span><br>
+                    <span data-translate="krok3_opis">Rozmowy kwalifikacyjne i testy kompetencji</span><br><br>
+                    <span class="code-green" data-translate="krok4_tytul">Krok 4: Zatrudnienie</span><br>
+                    <span data-translate="krok4_opis">Formalności, szkolenia i delegowanie do pracy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Solutions Section -->
+<section class="solutions-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 data-translate="produkcja_tytul">PRODUKCJA</h3>
+                    <p data-translate="produkcja_opis">Pracownicy do linii produkcyjnych, montażu i pakowania</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3 data-translate="logistyka_tytul">LOGISTYKA</h3>
+                    <p data-translate="logistyka_opis">Pracownicy magazynowi, operatorzy wózków i koordynatorzy</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="solution-card">
+                    <div class="solution-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 data-translate="administracja_tytul">ADMINISTRACJA</h3>
+                    <p data-translate="administracja_opis">Pracownicy biurowi, asystenci i specjaliści obsługi klienta</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-primary px-4 py-2" data-translate="rozwijaj_wspolprace">ROZPOCZNIJ WSPÓŁPRACĘ</a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <h2 class="mb-4" data-translate="cta_tytul">INNOWACYJNE PODEJŚCIE DO REKRUTACJI</h2>
+        <p class="lead mb-5" data-translate="cta_opis">Korzystamy z najnowszych technologii i metod, aby dostarczyć Ci najlepszych pracowników</p>
+        <a href="#" class="btn cta-button" data-translate="cta_button">ZAPISZ SIĘ NA BETA TESTY</a>
+    </div>
+</section>
+
+<!-- Trust Section -->
+<section class="trust-section">
+    <div class="container">
+        <h2 class="trust-title" data-translate="trust_tytul">PRACODAWCY NAM UFAJĄ</h2>
+        <p class="trust-subtitle" data-translate="trust_opis">FIRMY KORZYSTAJĄCE Z NASZYCH USŁUG</p>
+        <div class="counter-container mb-5">
+            <div class="counter-box">Polo-market</div>
+            <div class="counter-box">Rosa Europe sp. z o.o.</div>
+            <div class="counter-box">Algas</div>
+            <div class="counter-box">Kost Bet</div>
+            <div class="counter-box">PMS</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <form>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="WPROWADŹ SWÓJ E-MAIL" data-translate="trust_email_placeholder" required>
+                        <button class="btn btn-primary" type="submit" data-translate="trust_button">WYŚLIJ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer - wczytywany z includes/footer.html via JavaScript -->
+<div id="footer-placeholder"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ładowanie stopki
+        fetch('includes/footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading footer:', error);
+                document.getElementById('footer-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować stopki</div>';
+            });
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/translations.js"></script>
+<script src="assets/js/animations.js"></script>
+</body>
+</html>

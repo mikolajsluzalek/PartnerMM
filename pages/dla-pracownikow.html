@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dla Pracowników - JobFlex</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #0a4da2 0%, #8a2be2 100%);
+            padding: 8rem 0 4rem;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .job-category {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .job-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-category h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .benefits-list {
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-icon {
+            background-color: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .testimonials {
+            background-color: #f8f9fa;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: #ddd;
+        }
+
+        .author-details h5 {
+            margin-bottom: 0;
+        }
+
+        .author-details p {
+            color: #777;
+            margin-bottom: 0;
+        }
+
+        .contact-cta {
+            text-align: center;
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar - wczytywany z includes/header.html via JavaScript -->
+<div id="header-placeholder"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ładowanie nagłówka
+        fetch('../includes/header.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+
+                // Poprawienie ścieżek w linkach
+                const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('pages/')) {
+                        // Usuń 'pages/' z początku ścieżki, ponieważ już jesteśmy w katalogu pages
+                        link.setAttribute('href', href.replace('pages/', ''));
+                    }
+                });
+
+                // Ustawienie aktywnego linku
+                const currentPage = window.location.pathname.split('/').pop();
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === currentPage) {
+                        link.classList.add('active-link');
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+                document.getElementById('header-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować nagłówka</div>';
+            });
+    });
+</script>
+
+<!-- Page Header -->
+<header class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Dla Pracowników</h1>
+                <p class="lead">Znajdź pracę dopasowaną do Twoich umiejętności i oczekiwań</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <section class="container">
+        <h2 class="text-center mb-5">Jaką pracę oferujemy?</h2>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="job-category">
+                    <h3><i class="fas fa-industry me-2"></i> Produkcja</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-primary me-2"></i> Operatorzy maszyn</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Pracownicy linii produkcyjnej</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Kontrolerzy jakości</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Pracownicy montażu</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Pakowacze</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="job-category">
+                    <h3><i class="fas fa-truck me-2"></i> Logistyka</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-primary me-2"></i> Pracownicy magazynowi</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Operatorzy wózków widłowych</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Kompletatorzy zamówień</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Koordynatorzy logistyczni</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Kierowcy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="job-category">
+                    <h3><i class="fas fa-desktop me-2"></i> Administracja</h3>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-primary me-2"></i> Asystenci biurowi</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Pracownicy obsługi klienta</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Recepcjoniści</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Specjaliści ds. administracyjnych</li>
+                        <li><i class="fas fa-check text-primary me-2"></i> Pracownicy call center</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-list">
+            <h2 class="text-center mb-5">Korzyści ze współpracy z JobFlex</h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div>
+                            <h4>Legalność Zatrudnienia</h4>
+                            <p>Umowa o pracę tymczasową, pełne ubezpieczenie, wszystkie składki opłacone.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div>
+                            <h4>Terminowe Wynagrodzenie</h4>
+                            <p>Gwarantujemy wypłatę na czas, bez opóźnień, zawsze zgodną z umową.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Elastyczny Grafik</h4>
+                            <p>Dopasowujemy się do Twoich możliwości czasowych - praca pełna lub na część etatu.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <h4>Rozwój Zawodowy</h4>
+                            <p>Szkolenia, możliwość zdobycia doświadczenia i perspektywa stałego zatrudnienia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="text-center mb-5">Co mówią o nas pracownicy?</h2>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Dzięki JobFlex znalazłem pracę w magazynie, która odpowiada moim oczekiwaniom finansowym. Uczciwe podejście do pracownika i zawsze terminowa wypłata."</p>
+                        <div class="testimonial-author">
+                            <div class="author-image"></div>
+                            <div class="author-details">
+                                <h5>Tomasz K.</h5>
+                                <p>Pracownik magazynowy</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Początkowo miałam obawy przed pracą tymczasową, ale Job Flex mnie pozytywnie zaskoczył. Pełna umowa, wszystkie świadczenia, a po 3 miesiącach dostałam propozycję stałej pracy."</p>
+                        <div class="testimonial-author">
+                            <div class="author-image"></div>
+                            <div class="author-details">
+                                <h5>Anna M.</h5>
+                                <p>Pracownik administracyjny</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Elastyczny grafik pracy to było dokładnie to, czego potrzebowałem jako student. Mogę pracować i jednocześnie kontynuować naukę. Polecam JobFlex wszystkim poszukującym."</p>
+                        <div class="testimonial-author">
+                            <div class="author-image"></div>
+                            <div class="author-details">
+                                <h5>Michał W.</h5>
+                                <p>Pracownik produkcji</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta container text-center">
+        <h2>Gotowy, by rozpocząć swoją nową pracę?</h2>
+        <p class="lead mb-4">Wypełnij formularz, a nasz konsultant skontaktuje się z Tobą w ciągu 24 godzin.</p>
+        <a href="../pages/kontakt.html" class="btn btn-primary px-4 py-2">APLIKUJ TERAZ</a>
+    </section>
+</main>
+
+<!-- Footer - wczytywany z includes/footer.html via JavaScript -->
+<div id="footer-placeholder"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ładowanie stopki
+        fetch('../includes/footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+
+                // Poprawienie ścieżek w linkach
+                const footerLinks = document.querySelectorAll('.footer-link');
+                footerLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('pages/')) {
+                        // Usuń 'pages/' z początku ścieżki, ponieważ już jesteśmy w katalogu pages
+                        link.setAttribute('href', href.replace('pages/', ''));
+                    } else if (href === 'index.html') {
+                        // Popraw odnośnik do strony głównej
+                        link.setAttribute('href', '../index.html');
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading footer:', error);
+                document.getElementById('footer-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować stopki</div>';
+            });
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/translations.js"></script>
+<script src="../assets/js/animations.js"></script>
+</body>
+</html>

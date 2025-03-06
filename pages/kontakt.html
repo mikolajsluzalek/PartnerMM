@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - JobFlex</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #0a4da2 0%, #8a2be2 100%);
+            padding: 8rem 0 4rem;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            height: 100%;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form label {
+            font-weight: 500;
+        }
+
+        .map-container {
+            height: 400px;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .offices {
+            margin-top: 4rem;
+        }
+
+        .office-card {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: transform 0.3s;
+        }
+
+        .office-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .office-card h4 {
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<!-- Navbar - wczytywany z includes/header.html via JavaScript -->
+<div id="header-placeholder"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ładowanie nagłówka
+        fetch('../includes/header.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+
+                // Poprawienie ścieżek w linkach
+                const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('pages/')) {
+                        // Usuń 'pages/' z początku ścieżki, ponieważ już jesteśmy w katalogu pages
+                        link.setAttribute('href', href.replace('pages/', ''));
+                    }
+                });
+
+                // Ustawienie aktywnego linku
+                const currentPage = window.location.pathname.split('/').pop();
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === currentPage) {
+                        link.classList.add('active-link');
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading header:', error);
+                document.getElementById('header-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować nagłówka</div>';
+            });
+    });
+</script>
+
+<!-- Page Header -->
+<header class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Kontakt</h1>
+                <p class="lead">Jesteśmy dostępni, aby odpowiedzieć na wszystkie Twoje pytania</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="container">
+    <!-- Contact Information -->
+    <section class="contact-info">
+        <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Telefon</h3>
+                    <p class="mb-0">+48 123 456 789</p>
+                    <p>Pon-Pt: 8:00 - 16:00</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4 mb-md-0">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p class="mb-0">kontakt@jobflex.pl</p>
+                    <p>Odpowiadamy w ciągu 24h</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Adres</h3>
+                    <p class="mb-0">ul. Przykładowa 123</p>
+                    <p>00-000 Warszawa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="row">
+        <!-- Contact Form -->
+        <div class="col-lg-6 mb-5 mb-lg-0">
+            <h2 class="mb-4">Skontaktuj się z nami</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Imię i nazwisko</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Telefon</label>
+                        <input type="tel" class="form-control" id="phone">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="subject" class="form-label">Temat</label>
+                        <select class="form-select" id="subject" required>
+                            <option value="" selected disabled>Wybierz temat</option>
+                            <option value="oferta-pracy">Oferta pracy</option>
+                            <option value="wspolpraca">Współpraca biznesowa</option>
+                            <option value="pytanie">Pytanie ogólne</option>
+                            <option value="reklamacja">Reklamacja</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Wiadomość</label>
+                        <textarea class="form-control" id="message" rows="5" required></textarea>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="privacy" required>
+                        <label class="form-check-label" for="privacy">Zgadzam się na przetwarzanie moich danych osobowych</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Wyślij wiadomość</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="col-lg-6">
+            <h2 class="mb-4">Lokalizacja</h2>
+            <div class="map-container">
+                <!-- Placeholder dla mapy Google -->
+                <img src="/api/placeholder/800/400" alt="Mapa" class="img-fluid w-100 h-100" style="object-fit: cover;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Offices -->
+    <section class="offices">
+        <h2 class="text-center mb-5">Nasze oddziały</h2>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="office-card">
+                    <h4>Warszawa</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> ul. Przykładowa 123, 00-000 Warszawa</p>
+                    <p><i class="fas fa-phone-alt me-2"></i> +48 123 456 789</p>
+                    <p><i class="fas fa-envelope me-2"></i> warszawa@jobflex.pl</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="office-card">
+                    <h4>Kraków</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> ul. Fikcyjna 456, 30-000 Kraków</p>
+                    <p><i class="fas fa-phone-alt me-2"></i> +48 987 654 321</p>
+                    <p><i class="fas fa-envelope me-2"></i> krakow@jobflex.pl</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="office-card">
+                    <h4>Poznań</h4>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> ul. Testowa 789, 60-000 Poznań</p>
+                    <p><i class="fas fa-phone-alt me-2"></i> +48 111 222 333</p>
+                    <p><i class="fas fa-envelope me-2"></i> poznan@jobflex.pl</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer - wczytywany z includes/footer.html via JavaScript -->
+<div id="footer-placeholder"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ładowanie stopki
+        fetch('../includes/footer.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+
+                // Poprawienie ścieżek w linkach
+                const footerLinks = document.querySelectorAll('.footer-link');
+                footerLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('pages/')) {
+                        // Usuń 'pages/' z początku ścieżki, ponieważ już jesteśmy w katalogu pages
+                        link.setAttribute('href', href.replace('pages/', ''));
+                    } else if (href === 'index.html') {
+                        // Popraw odnośnik do strony głównej
+                        link.setAttribute('href', '../index.html');
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading footer:', error);
+                document.getElementById('footer-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować stopki</div>';
+            });
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/translations.js"></script>
+<script src="../assets/js/animations.js"></script>
+<script>
+    // Form submission handling
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Simulate form submission
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Wysyłanie...';
+
+        // Simulate delay for demo purposes
+        setTimeout(() => {
+            // Create success message
+            const successAlert = document.createElement('div');
+            successAlert.className = 'alert alert-success mt-3';
+            successAlert.innerHTML = '<i class="fas fa-check-circle me-2"></i> Twoja wiadomość została wysłana. Skontaktujemy się z Tobą wkrótce.';
+
+            // Insert alert after form
+            this.after(successAlert);
+
+            // Reset form
+            this.reset();
+
+            // Restore button
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalText;
+
+            // Remove alert after 5 seconds
+            setTimeout(() => {
+                successAlert.remove();
+            }, 5000);
+        }, 1500);
+    });
+
+    // Office card hover effect
+    const officeCards = document.querySelectorAll('.office-card');
+    officeCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#e9f7fe';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '#f8f9fa';
+        });
+    });
+</script>

@@ -1,0 +1,99 @@
+/* Flagi językowe */
+.language-selector {
+    margin-left: 15px;
+}
+
+.language-selector .dropdown-toggle {
+    color: white;
+}
+
+.language-selector .dropdown-toggle::after {
+    color: rgba(255, 255, 255, 0.7);
+    margin-left: 5px;
+}
+
+.language-selector .dropdown-menu {
+    min-width: 140px;
+    background-color: #0e1628;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.language-selector .dropdown-item {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem 1rem;
+}
+
+.language-selector .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.language-selector .dropdown-toggle img {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.language-selector .dropdown-toggle:hover img {
+    transform: scale(1.1);
+}/*
+ * Navbar CSS for JobFlex
+ * Contains all styles for the navigation bar
+ */
+
+.navbar {
+    padding: 1rem 2rem;
+    background-color: rgba(14, 22, 40, 0.95) !important;
+    transition: padding 0.3s;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    color: white !important;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.active-link {
+    color: white !important;
+    border-bottom: 2px solid #3498db;
+}
+
+/* Footer styles - related to navigation */
+.footer {
+    background-color: #0a1020;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 2rem 0;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: white;
+}
+
+.social-icon {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.social-icon:hover {
+    color: white;
+}
