@@ -1,58 +1,58 @@
 /**
- * Bardzo prosty system zarządzania językami dla strony JobFlex
+ * Improved language management system for JobFlex
  */
 
-// Dostępne języki
+// Available languages
 const availableLanguages = ['pl', 'ua', 'en'];
 
-// Domyślny język
+// Default language
 const defaultLanguage = 'pl';
 
-// Funkcja inicjalizująca język
+// Initialize language system
 function initLanguage() {
-    console.log("Inicjalizacja języka");
+    console.log("Initializing language system");
 
-    // Pobierz zapisany język lub użyj domyślnego
+    // Get saved language or use default
     const currentLang = localStorage.getItem('selectedLanguage') || defaultLanguage;
-    console.log("Używam języka:", currentLang);
+    console.log("Using language:", currentLang);
 
-    // Ustaw aktualny język
+    // Set current language
     setLanguage(currentLang, false);
 
-    // Dodaj obsługę przycisków zmiany języka
+    // Add event listeners to language buttons
     setupLanguageButtons();
 }
 
-// Funkcja ustawiająca język
+// Set the language
 function setLanguage(lang, saveToStorage = true) {
-    console.log("Ustawiam język:", lang);
+    console.log("Setting language:", lang);
 
-    // Zapisz wybór w localStorage (opcjonalnie)
+    // Save to localStorage (optional)
     if (saveToStorage) {
         localStorage.setItem('selectedLanguage', lang);
     }
 
-    // Aktualizuj flagi
+    // Update flags
     updateFlags(lang);
 
-    // Przetłumacz wszystkie elementy
+    // Translate all elements
     translatePage(lang);
 }
 
-// Aktualizuje wyświetlanie flag
+// Update flag display
 function updateFlags(lang) {
-    console.log("Aktualizuję flagi");
+    console.log("Updating flags");
 
-    // Określ ścieżkę do flag
+    // Determine flags path
     const isInSubdir = window.location.pathname.includes('/pages/');
     const flagsPath = isInSubdir ? '../assets/images/flags/' : 'assets/images/flags/';
 
-    // Aktualizuj flagę w głównym przycisku
+    // Update main button flag
     const currentFlag = document.getElementById('current-flag');
     if (currentFlag) {
         currentFlag.src = flagsPath + lang + '.png';
 
-        // Ustaw odpowiedni tekst alternatywny
+        // Set appropriate alt text
         const altTexts = {
             'pl': 'Polski',
             'ua': 'Українська',
@@ -60,10 +60,10 @@ function updateFlags(lang) {
         };
         currentFlag.alt = altTexts[lang] || lang;
     } else {
-        console.warn("Nie znaleziono elementu current-flag");
+        console.warn("Current flag element not found");
     }
 
-    // Aktualizuj ścieżki do flag w menu
+    // Update flag paths in dropdown menu
     document.querySelectorAll('.dropdown-menu img').forEach(img => {
         const imgId = img.id;
         if (imgId && imgId.includes('-flag')) {
@@ -73,66 +73,70 @@ function updateFlags(lang) {
     });
 }
 
-// Tłumaczy stronę na określony język
+// Translate the page to specified language
 function translatePage(lang) {
-    console.log("Tłumaczę stronę na język:", lang);
+    console.log("Translating page to:", lang);
 
-    // Sprawdź czy obiekt translations jest dostępny
+    // Check if translations object is available
     if (!window.translations) {
-        console.error("Obiekt translations jest niedostępny!");
+        console.error("Translations object is not available!");
         return;
     }
 
-    // Znajdź wszystkie elementy z atrybutem data-translate
+    // Find all elements with data-translate attribute
     const elements = document.querySelectorAll('[data-translate]');
-    console.log("Znaleziono elementów do przetłumaczenia:", elements.length);
+    console.log("Found elements to translate:", elements.length);
 
-    // Przetłumacz każdy element
+    // Translate each element
     elements.forEach(element => {
         const key = element.getAttribute('data-translate');
 
-        // Sprawdź czy istnieje tłumaczenie dla danego klucza
+        // Check if translation exists for the key
         if (window.translations[key] && window.translations[key][lang]) {
             const translation = window.translations[key][lang];
 
-            // Zastosuj tłumaczenie w zależności od typu elementu
+            // Apply translation based on element type
             if (element.hasAttribute('placeholder')) {
                 element.setAttribute('placeholder', translation);
             } else {
                 element.textContent = translation;
             }
         } else {
-            console.warn(`Brak tłumaczenia dla klucza: ${key} w języku: ${lang}`);
+            console.warn(`No translation found for key: ${key} in language: ${lang}`);
         }
     });
 }
 
-// Dodaje obsługę przycisków zmiany języka
+// Add event listeners to language buttons
 function setupLanguageButtons() {
-    console.log("Dodaję obsługę przycisków zmiany języka");
+    console.log("Setting up language buttons");
 
-    // Znajdź przyciski zmiany języka
+    // Find language buttons
     const buttons = document.querySelectorAll('[data-language]');
-    console.log("Znaleziono przycisków:", buttons.length);
+    console.log("Found buttons:", buttons.length);
 
-    // Dodaj nasłuchiwanie zdarzeń kliknięcia
+    // Add click event listeners
     buttons.forEach(button => {
-        // Usuń wcześniejsze nasłuchiwacze, aby uniknąć duplikacji
-        const clone = button.cloneNode(true);
-        button.parentNode.replaceChild(clone, button);
-
-        // Dodaj nowy nasłuchiwacz
-        clone.addEventListener('click', function(e) {
+        button.addEventListener('click', function(e) {
             e.preventDefault();
             const language = this.getAttribute('data-language');
-            console.log("Kliknięto przycisk zmiany języka:", language);
+            console.log("Language button clicked:", language);
             setLanguage(language);
         });
     });
 }
 
-// Inicjalizacja po załadowaniu DOM i komponentów
-window.addEventListener('load', function() {
-    console.log("Strona załadowana, rozpoczynam inicjalizację języka");
-    setTimeout(initLanguage, 500);
+// Initialize after DOM and components are loaded
+window.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM loaded, waiting for components...");
+
+    // Set a shorter timeout to ensure language system initializes after components
+    setTimeout(initLanguage, 300);
 });
+
+// Expose methods to global scope for accessibility from HTML
+window.LanguageManager = {
+    init: initLanguage,
+    setLanguage: setLanguage,
+    translatePage: translatePage
+};

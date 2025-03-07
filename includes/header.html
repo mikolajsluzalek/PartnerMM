@@ -8,13 +8,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/dla-pracownikow.html" id="employees-link" data-translate="menu_dla_pracownikow">DLA PRACOWNIKÓW</a>
+                    <a class="nav-link" href="#" id="employees-link" data-translate="menu_dla_pracownikow">DLA PRACOWNIKÓW</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/dla-firm.html" id="companies-link" data-translate="menu_dla_firm">DLA FIRM</a>
+                    <a class="nav-link" href="#" id="companies-link" data-translate="menu_dla_firm">DLA FIRM</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/kontakt.html" id="contact-link" data-translate="menu_kontakt">KONTAKT</a>
+                    <a class="nav-link" href="#" id="contact-link" data-translate="menu_kontakt">KONTAKT</a>
                 </li>
             </ul>
             <div class="language-selector d-flex align-items-center">
@@ -23,15 +23,15 @@
                         <img src="#" alt="Language" width="24" height="18" id="current-flag">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="switchLanguage('pl')">
+                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" data-language="pl">
                             <img src="#" alt="Polski" width="24" height="18" class="me-2" id="pl-flag">
                             <span data-translate="lang_polski">Polski</span>
                         </a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="switchLanguage('ua')">
+                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" data-language="ua">
                             <img src="#" alt="Українська" width="24" height="18" class="me-2" id="ua-flag">
                             <span data-translate="lang_ukrainski">Ukraiński</span>
                         </a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="switchLanguage('en')">
+                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" data-language="en">
                             <img src="#" alt="English" width="24" height="18" class="me-2" id="en-flag">
                             <span data-translate="lang_angielski">Angielski</span>
                         </a></li>
@@ -57,7 +57,7 @@
             flagsPath = '../assets/images/flags/';
 
             // Set up navigation links
-            document.getElementById('brand-link').href = '../index.html';
+            document.getElementById('brand-link').href = 'index.html';
             document.getElementById('employees-link').href = 'dla-pracownikow.html';
             document.getElementById('companies-link').href = 'dla-firm.html';
             document.getElementById('contact-link').href = 'kontakt.html';
@@ -67,7 +67,7 @@
             flagsPath = 'assets/images/flags/';
 
             // Set up navigation links
-            document.getElementById('brand-link').href = 'index.html';
+            document.getElementById('brand-link').href = 'pages/index.html';
             document.getElementById('employees-link').href = 'pages/dla-pracownikow.html';
             document.getElementById('companies-link').href = 'pages/dla-firm.html';
             document.getElementById('contact-link').href = 'pages/kontakt.html';
@@ -91,28 +91,28 @@
         });
 
         // Apply saved language if any
-        const savedLang = localStorage.getItem('selectedLanguage');
-        if (savedLang) {
-            document.getElementById('current-flag').src = flagsPath + savedLang + '.png';
-            applyTranslations(savedLang);
-        }
+        const savedLang = localStorage.getItem('selectedLanguage') || 'pl';
+        document.getElementById('current-flag').src = flagsPath + savedLang + '.png';
+
+        // Add event listeners for language switching
+        document.querySelectorAll('[data-language]').forEach(element => {
+            element.addEventListener('click', function(e) {
+                e.preventDefault();
+                const language = this.getAttribute('data-language');
+
+                // Save selection
+                localStorage.setItem('selectedLanguage', language);
+
+                // Update flag
+                document.getElementById('current-flag').src = flagsPath + language + '.png';
+
+                // Apply translations if translations object is available
+                if (window.translations) {
+                    applyTranslations(language);
+                }
+            });
+        });
     });
-
-    // Direct language switching function
-    function switchLanguage(lang) {
-        // Save selection
-        localStorage.setItem('selectedLanguage', lang);
-
-        // Update flag
-        const path = window.location.pathname;
-        const inPagesDir = path.indexOf('/pages/') > -1;
-        const flagsPath = inPagesDir ? '../assets/images/flags/' : 'assets/images/flags/';
-
-        document.getElementById('current-flag').src = flagsPath + lang + '.png';
-
-        // Apply translations directly
-        applyTranslations(lang);
-    }
 
     // Apply translations to all elements with data-translate attribute
     function applyTranslations(lang) {
