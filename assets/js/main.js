@@ -10,7 +10,7 @@ function loadPageComponents() {
     const basePath = isInSubdir ? '../' : '';
 
     // Load header
-    loadComponent('header-placeholder', basePath + 'includes/header.html', function() {
+    loadComponent('header-placeholder', basePath + '../includes/header.html', function() {
         // After header loads, initialize active navigation
         setupActiveNavigation();
 
@@ -24,7 +24,7 @@ function loadPageComponents() {
     });
 
     // Load footer
-    loadComponent('footer-placeholder', basePath + 'includes/footer.html', function() {
+    loadComponent('footer-placeholder', basePath + '../includes/footer.html', function() {
         // Fix footer links if in subdir
         if (isInSubdir) {
             fixFooterLinks();

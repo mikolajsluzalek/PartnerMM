@@ -1,20 +1,20 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#" id="brand-link">JOBFLEX</a>
+        <a class="navbar-brand" href="#" id="brand-link">PARTNER</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="employees-link" data-translate="menu_dla_pracownikow">DLA PRACOWNIKÓW</a>
+                    <a class="nav-link" href="/pages/dla-pracownikow.html" id="employees-link" data-translate="menu_dla_pracownikow">DLA PRACOWNIKÓW</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="companies-link" data-translate="menu_dla_firm">DLA FIRM</a>
+                    <a class="nav-link" href="/pages/dla-firm.html" id="companies-link" data-translate="menu_dla_firm">DLA FIRM</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="contact-link" data-translate="menu_kontakt">KONTAKT</a>
+                    <a class="nav-link" href="/pages/kontakt.html" id="contact-link" data-translate="menu_kontakt">KONTAKT</a>
                 </li>
             </ul>
             <div class="language-selector d-flex align-items-center">
@@ -46,12 +46,15 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Get the current path to determine if we're in the main directory or pages
         const path = window.location.pathname;
-        const inPagesDir = path.indexOf('/pages/') > -1;
+        const inPagesDir = path.includes('/pages/');
+
+        // Determine whether the current page is index.html in the pages directory
+        const isIndexInPages = path.endsWith('/pages/index.html') || path.endsWith('/pages/');
 
         // Set up the correct paths based on location
         let basePath, flagsPath;
 
-        if (inPagesDir) {
+
             // We're in the pages directory
             basePath = '../';
             flagsPath = '../assets/images/flags/';
@@ -61,34 +64,13 @@
             document.getElementById('employees-link').href = 'dla-pracownikow.html';
             document.getElementById('companies-link').href = 'dla-firm.html';
             document.getElementById('contact-link').href = 'kontakt.html';
-        } else {
-            // We're in the main directory
-            basePath = '';
-            flagsPath = 'assets/images/flags/';
 
-            // Set up navigation links
-            document.getElementById('brand-link').href = 'pages/index.html';
-            document.getElementById('employees-link').href = 'pages/dla-pracownikow.html';
-            document.getElementById('companies-link').href = 'pages/dla-firm.html';
-            document.getElementById('contact-link').href = 'pages/kontakt.html';
-        }
 
         // Set flag image paths
         document.getElementById('current-flag').src = flagsPath + 'pl.png';
         document.getElementById('pl-flag').src = flagsPath + 'pl.png';
         document.getElementById('ua-flag').src = flagsPath + 'ua.png';
         document.getElementById('en-flag').src = flagsPath + 'en.png';
-
-        // Highlight active link
-        const currentPage = path.split('/').pop();
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href && href.indexOf(currentPage) > -1) {
-                link.classList.add('active-link');
-            }
-        });
 
         // Apply saved language if any
         const savedLang = localStorage.getItem('selectedLanguage') || 'pl';

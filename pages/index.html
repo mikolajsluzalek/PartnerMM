@@ -189,7 +189,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Ładowanie nagłówka
-        fetch('includes/header.html')
+        fetch('../includes/header.html')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -198,6 +198,13 @@
             })
             .then(html => {
                 document.getElementById('header-placeholder').innerHTML = html;
+
+                // Initialize language system after header loads
+                if (typeof LanguageManager !== 'undefined') {
+                    setTimeout(() => {
+                        LanguageManager.init();
+                    }, 100);
+                }
             })
             .catch(error => {
                 console.error('Error loading header:', error);
@@ -205,7 +212,7 @@
             });
 
         // Ładowanie stopki
-        fetch('includes/footer.html')
+        fetch('../includes/footer.html')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -214,6 +221,16 @@
             })
             .then(html => {
                 document.getElementById('footer-placeholder').innerHTML = html;
+
+                // Popraw ścieżki w linkach stopki dla podstrony
+                document.querySelectorAll('.footer-link').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('pages/')) {
+                        link.setAttribute('href', href.replace('pages/', ''));
+                    } else if (href === 'index.html') {
+                        link.setAttribute('href', 'index.html'); // Already in pages directory
+                    }
+                });
             })
             .catch(error => {
                 console.error('Error loading footer:', error);
