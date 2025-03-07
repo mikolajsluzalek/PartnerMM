@@ -22,11 +22,11 @@
     <div class="container">
         <div class="row mb-4">
             <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
-                <a href="index.html" class="footer-link" id="home-footer" data-translate="footer_home">HOME</a>
-                <a href="pages/polityka-prywatnosci.html" class="footer-link" id="privacy-footer" data-translate="footer_prywatnosc">POLITYKA PRYWATNOŚCI</a>
-                <a href="pages/mapa-strony.html" class="footer-link" id="sitemap-footer" data-translate="footer_mapa">MAPA STRONY</a>
-                <a href="pages/faq.html" class="footer-link" id="faq-footer" data-translate="footer_faq">FAQ</a>
-                <a href="pages/kontakt.html" class="footer-link" id="contact-footer" data-translate="footer_kontakt">KONTAKT</a>
+                <a href="#" class="footer-link" id="home-footer" data-translate="footer_home">HOME</a>
+                <a href="#" class="footer-link" id="privacy-footer" data-translate="footer_prywatnosc">POLITYKA PRYWATNOŚCI</a>
+                <a href="#" class="footer-link" id="sitemap-footer" data-translate="footer_mapa">MAPA STRONY</a>
+                <a href="#" class="footer-link" id="faq-footer" data-translate="footer_faq">FAQ</a>
+                <a href="#" class="footer-link" id="contact-footer" data-translate="footer_kontakt">KONTAKT</a>
             </div>
             <div class="col-md-6 text-md-end text-center">
                 <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
@@ -44,24 +44,26 @@
 </footer>
 
 <script>
-    // Dostosowanie ścieżek w zależności od lokalizacji
     document.addEventListener('DOMContentLoaded', function() {
+        // Get the current path to determine if we're in the main directory or pages
         const path = window.location.pathname;
-        const isInSubdir = path.includes('/pages/');
+        const inPagesDir = path.indexOf('/pages/') > -1;
 
-        const homeFooter = document.getElementById('home-footer');
-        const privacyFooter = document.getElementById('privacy-footer');
-        const sitemapFooter = document.getElementById('sitemap-footer');
-        const faqFooter = document.getElementById('faq-footer');
-        const contactFooter = document.getElementById('contact-footer');
-
-        if (isInSubdir) {
-            // Jesteśmy w podkatalogu - dostosuj ścieżki
-            homeFooter.setAttribute('href', '../index.html');
-            privacyFooter.setAttribute('href', 'polityka-prywatnosci.html');
-            sitemapFooter.setAttribute('href', 'mapa-strony.html');
-            faqFooter.setAttribute('href', 'faq.html');
-            contactFooter.setAttribute('href', 'kontakt.html');
+        // Set up the correct paths based on location
+        if (inPagesDir) {
+            // We're in the pages directory
+            document.getElementById('home-footer').href = '../index.html';
+            document.getElementById('privacy-footer').href = 'polityka-prywatnosci.html';
+            document.getElementById('sitemap-footer').href = 'mapa-strony.html';
+            document.getElementById('faq-footer').href = 'faq.html';
+            document.getElementById('contact-footer').href = 'kontakt.html';
+        } else {
+            // We're in the main directory
+            document.getElementById('home-footer').href = 'index.html';
+            document.getElementById('privacy-footer').href = 'pages/polityka-prywatnosci.html';
+            document.getElementById('sitemap-footer').href = 'pages/mapa-strony.html';
+            document.getElementById('faq-footer').href = 'pages/faq.html';
+            document.getElementById('contact-footer').href = 'pages/kontakt.html';
         }
     });
 </script>

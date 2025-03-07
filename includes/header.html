@@ -1,38 +1,38 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html" id="home-link">JOBFLEX</a>
+        <a class="navbar-brand" href="#" id="brand-link">JOBFLEX</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/dla-pracownikow.html" id="pracownicy-link" data-translate="menu_dla_pracownikow">DLA PRACOWNIKÓW</a>
+                    <a class="nav-link" href="/pages/dla-pracownikow.html" id="employees-link" data-translate="menu_dla_pracownikow">DLA PRACOWNIKÓW</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/dla-firm.html" id="firmy-link" data-translate="menu_dla_firm">DLA FIRM</a>
+                    <a class="nav-link" href="/pages/dla-firm.html" id="companies-link" data-translate="menu_dla_firm">DLA FIRM</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages/kontakt.html" id="kontakt-link" data-translate="menu_kontakt">KONTAKT</a>
+                    <a class="nav-link" href="/pages/kontakt.html" id="contact-link" data-translate="menu_kontakt">KONTAKT</a>
                 </li>
             </ul>
             <div class="language-selector d-flex align-items-center">
                 <div class="dropdown">
                     <button class="btn dropdown-toggle p-0 bg-transparent border-0" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="assets/images/flags/pl.png" alt="Polski" width="24" height="18" id="current-flag">
+                        <img src="#" alt="Language" width="24" height="18" id="current-flag">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-language="pl">
-                            <img src="assets/images/flags/pl.png" alt="Polski" width="24" height="18" class="me-2" id="pl-flag">
+                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="switchLanguage('pl')">
+                            <img src="#" alt="Polski" width="24" height="18" class="me-2" id="pl-flag">
                             <span data-translate="lang_polski">Polski</span>
                         </a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-language="ua">
-                            <img src="assets/images/flags/ua.png" alt="Українська" width="24" height="18" class="me-2" id="ua-flag">
+                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="switchLanguage('ua')">
+                            <img src="#" alt="Українська" width="24" height="18" class="me-2" id="ua-flag">
                             <span data-translate="lang_ukrainski">Ukraiński</span>
                         </a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-language="en">
-                            <img src="assets/images/flags/en.png" alt="English" width="24" height="18" class="me-2" id="en-flag">
+                        <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" onclick="switchLanguage('en')">
+                            <img src="#" alt="English" width="24" height="18" class="me-2" id="en-flag">
                             <span data-translate="lang_angielski">Angielski</span>
                         </a></li>
                     </ul>
@@ -43,47 +43,92 @@
 </nav>
 
 <script>
-    // Dostosowanie ścieżek po załadowaniu dokumentu
     document.addEventListener('DOMContentLoaded', function() {
-        // Sprawdź, czy jesteśmy w podkatalogu
-        const isInSubdir = window.location.pathname.includes('/pages/');
+        // Get the current path to determine if we're in the main directory or pages
+        const path = window.location.pathname;
+        const inPagesDir = path.indexOf('/pages/') > -1;
 
-        // Dostosuj ścieżki w menu
-        const homeLink = document.getElementById('home-link');
-        const pracownicyLink = document.getElementById('pracownicy-link');
-        const firmyLink = document.getElementById('firmy-link');
-        const kontaktLink = document.getElementById('kontakt-link');
+        // Set up the correct paths based on location
+        let basePath, flagsPath;
 
-        if (isInSubdir) {
-            // Jesteśmy w podkatalogu
-            if (homeLink) homeLink.setAttribute('href', '../index.html');
-            if (pracownicyLink) pracownicyLink.setAttribute('href', 'dla-pracownikow.html');
-            if (firmyLink) firmyLink.setAttribute('href', 'dla-firm.html');
-            if (kontaktLink) kontaktLink.setAttribute('href', 'kontakt.html');
+        if (inPagesDir) {
+            // We're in the pages directory
+            basePath = '../';
+            flagsPath = '../assets/images/flags/';
 
-            // Dostosuj ścieżki do flag
-            const flagsPath = '../assets/images/flags/';
-            document.querySelectorAll('#current-flag, #pl-flag, #ua-flag, #en-flag').forEach(img => {
-                if (img) {
-                    const flagName = img.id.replace('current-flag', localStorage.getItem('selectedLanguage') || 'pl')
-                        .replace('-flag', '');
-                    img.setAttribute('src', flagsPath + flagName + '.png');
-                }
-            });
+            // Set up navigation links
+            document.getElementById('brand-link').href = '../index.html';
+            document.getElementById('employees-link').href = 'dla-pracownikow.html';
+            document.getElementById('companies-link').href = 'dla-firm.html';
+            document.getElementById('contact-link').href = 'kontakt.html';
+        } else {
+            // We're in the main directory
+            basePath = '';
+            flagsPath = 'assets/images/flags/';
+
+            // Set up navigation links
+            document.getElementById('brand-link').href = 'index.html';
+            document.getElementById('employees-link').href = 'pages/dla-pracownikow.html';
+            document.getElementById('companies-link').href = 'pages/dla-firm.html';
+            document.getElementById('contact-link').href = 'pages/kontakt.html';
         }
 
-        // Ustaw aktywny link
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        document.querySelectorAll('.nav-link').forEach(link => {
-            const href = link.getAttribute('href');
-            const linkPage = href.split('/').pop();
+        // Set flag image paths
+        document.getElementById('current-flag').src = flagsPath + 'pl.png';
+        document.getElementById('pl-flag').src = flagsPath + 'pl.png';
+        document.getElementById('ua-flag').src = flagsPath + 'ua.png';
+        document.getElementById('en-flag').src = flagsPath + 'en.png';
 
-            if ((currentPage === 'index.html' || currentPage === '') &&
-                (linkPage === 'index.html' || href === './')) {
-                link.classList.add('active-link');
-            } else if (linkPage === currentPage) {
+        // Highlight active link
+        const currentPage = path.split('/').pop();
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && href.indexOf(currentPage) > -1) {
                 link.classList.add('active-link');
             }
         });
+
+        // Apply saved language if any
+        const savedLang = localStorage.getItem('selectedLanguage');
+        if (savedLang) {
+            document.getElementById('current-flag').src = flagsPath + savedLang + '.png';
+            applyTranslations(savedLang);
+        }
     });
+
+    // Direct language switching function
+    function switchLanguage(lang) {
+        // Save selection
+        localStorage.setItem('selectedLanguage', lang);
+
+        // Update flag
+        const path = window.location.pathname;
+        const inPagesDir = path.indexOf('/pages/') > -1;
+        const flagsPath = inPagesDir ? '../assets/images/flags/' : 'assets/images/flags/';
+
+        document.getElementById('current-flag').src = flagsPath + lang + '.png';
+
+        // Apply translations directly
+        applyTranslations(lang);
+    }
+
+    // Apply translations to all elements with data-translate attribute
+    function applyTranslations(lang) {
+        const elements = document.querySelectorAll('[data-translate]');
+
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+
+            // Access the translations object from window scope
+            if (window.translations && window.translations[key] && window.translations[key][lang]) {
+                if (element.hasAttribute('placeholder')) {
+                    element.setAttribute('placeholder', window.translations[key][lang]);
+                } else {
+                    element.textContent = window.translations[key][lang];
+                }
+            }
+        });
+    }
 </script>
