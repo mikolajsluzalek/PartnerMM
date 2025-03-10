@@ -62,33 +62,19 @@
         const savedLang = localStorage.getItem('selectedLanguage') || 'pl';
         document.getElementById('current-flag').src = flagsPath + savedLang + '.png';
 
-        // Add event listeners for language switching
+        // Add event listeners for language switching - using our LanguageManager instead of inline
         document.querySelectorAll('[data-language]').forEach(element => {
             element.addEventListener('click', function(e) {
                 e.preventDefault();
                 const language = this.getAttribute('data-language');
 
-                // Save selection
-                localStorage.setItem('selectedLanguage', language);
-
-                // Update flag
-                document.getElementById('current-flag').src = flagsPath + language + '.png';
-
-                // Apply translations if available
-                if (window.translations) {
-                    const elements = document.querySelectorAll('[data-translate]');
-
-                    elements.forEach(element => {
-                        const key = element.getAttribute('data-translate');
-
-                        if (window.translations[key] && window.translations[key][language]) {
-                            if (element.hasAttribute('placeholder')) {
-                                element.setAttribute('placeholder', window.translations[key][language]);
-                            } else {
-                                element.textContent = window.translations[key][language];
-                            }
-                        }
-                    });
+                // Use the LanguageManager to handle the language change
+                if (window.LanguageManager) {
+                    window.LanguageManager.setLanguage(language, true);
+                } else {
+                    // Fallback if LanguageManager isn't available
+                    localStorage.setItem('selectedLanguage', language);
+                    window.location.reload();
                 }
             });
         });

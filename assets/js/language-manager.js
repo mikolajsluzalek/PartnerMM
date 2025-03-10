@@ -1,5 +1,5 @@
 /**
- * Improved language management system for JobFlex
+ * Improved language management system for Partner-MM
  */
 
 // Available languages
@@ -24,19 +24,23 @@ function initLanguage() {
 }
 
 // Set the language
-function setLanguage(lang, saveToStorage = true) {
+function setLanguage(lang, reloadPage = true) {
     console.log("Setting language:", lang);
 
-    // Save to localStorage (optional)
-    if (saveToStorage) {
-        localStorage.setItem('selectedLanguage', lang);
-    }
+    // Save to localStorage
+    localStorage.setItem('selectedLanguage', lang);
 
     // Update flags
     updateFlags(lang);
 
-    // Translate all elements
-    translatePage(lang);
+    // If reload is requested (default behavior now), reload the page
+    if (reloadPage) {
+        console.log("Reloading page to apply language change");
+        window.location.reload();
+    } else {
+        // If not reloading, translate the page directly (only used during initial load)
+        translatePage(lang);
+    }
 }
 
 // Update flag display
@@ -121,7 +125,9 @@ function setupLanguageButtons() {
             e.preventDefault();
             const language = this.getAttribute('data-language');
             console.log("Language button clicked:", language);
-            setLanguage(language);
+
+            // Set the language and reload the page
+            setLanguage(language, true);
         });
     });
 }

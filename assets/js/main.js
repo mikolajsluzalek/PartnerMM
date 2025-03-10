@@ -1,5 +1,5 @@
 /**
- * Improved page component loading for JobFlex
+ * Improved page component loading for Partner-MM
  * To be used in the main.js file or directly in page scripts
  */
 

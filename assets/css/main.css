@@ -3,10 +3,67 @@
  * Contains general styling and section-specific styles
  */
 
+.hero-logo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: auto;
+    opacity: 0.8;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .hero-logo {
+        height: 60%;
+        left: -20px;
+    }
+}
+/* Update the hero section top margin to create space for the navbar */
+.hero-section {
+    margin-top: 90px !important; /* Increased from 70px to give more space */
+    padding-top: 5rem;
+}
+
+/* Update the page header top margin/padding for subpages */
+.page-header {
+    margin-top: 75px !important;
+    padding: 7rem 0 4rem !important; /* Increased top padding */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Adjust logo position to avoid overlap with navbar */
+.hero-logo {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: auto;
+    opacity: 0.8;
+    z-index: 0;
+    pointer-events: none;
+    margin-top: 0; /* Reset any margin that might be affecting position */
+}
+
+/* Ensure proper z-index for navbar */
+.navbar {
+    z-index: 1030 !important; /* Make sure navbar stays on top */
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
+.contact-cta-title {
+    text-align: center !important;
+    display: block !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
 /* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, #0a4da2 0%, #8a2be2 100%);
