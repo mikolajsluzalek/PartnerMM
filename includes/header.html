@@ -1,38 +1,38 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#" id="brand-link">PARTNER</a>
+        <a class="navbar-brand" href="index.html" id="brand-link">PARTNER</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto me-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/dla-pracownikow.html" id="employees-link" data-translate="menu_dla_pracownikow">DLA PRACOWNIKÓW</a>
+                    <a class="nav-link" href="dla-pracownikow.html" id="employees-link" data-translate="menu_dla_pracownikow">DLA PRACOWNIKÓW</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/dla-firm.html" id="companies-link" data-translate="menu_dla_firm">DLA FIRM</a>
+                    <a class="nav-link" href="dla-firm.html" id="companies-link" data-translate="menu_dla_firm">DLA FIRM</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/kontakt.html" id="contact-link" data-translate="menu_kontakt">KONTAKT</a>
+                    <a class="nav-link" href="kontakt.html" id="contact-link" data-translate="menu_kontakt">KONTAKT</a>
                 </li>
             </ul>
             <div class="language-selector d-flex align-items-center">
                 <div class="dropdown">
                     <button class="btn dropdown-toggle p-0 bg-transparent border-0" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="#" alt="Language" width="24" height="18" id="current-flag">
+                        <img src="../assets/images/flags/pl.png" alt="Language" width="24" height="18" id="current-flag">
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                         <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" data-language="pl">
-                            <img src="#" alt="Polski" width="24" height="18" class="me-2" id="pl-flag">
+                            <img src="../assets/images/flags/pl.png" alt="Polski" width="24" height="18" class="me-2" id="pl-flag">
                             <span data-translate="lang_polski">Polski</span>
                         </a></li>
                         <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" data-language="ua">
-                            <img src="#" alt="Українська" width="24" height="18" class="me-2" id="ua-flag">
+                            <img src="../assets/images/flags/ua.png" alt="Українська" width="24" height="18" class="me-2" id="ua-flag">
                             <span data-translate="lang_ukrainski">Ukraiński</span>
                         </a></li>
                         <li><a class="dropdown-item d-flex align-items-center" href="javascript:void(0)" data-language="en">
-                            <img src="#" alt="English" width="24" height="18" class="me-2" id="en-flag">
+                            <img src="../assets/images/flags/en.png" alt="English" width="24" height="18" class="me-2" id="en-flag">
                             <span data-translate="lang_angielski">Angielski</span>
                         </a></li>
                     </ul>
@@ -44,33 +44,19 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Get the current path to determine if we're in the main directory or pages
-        const path = window.location.pathname;
-        const inPagesDir = path.includes('/pages/');
+        // Highlight active link based on current page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navLinks = document.querySelectorAll('.nav-link');
 
-        // Determine whether the current page is index.html in the pages directory
-        const isIndexInPages = path.endsWith('/pages/index.html') || path.endsWith('/pages/');
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === currentPage) {
+                link.classList.add('active-link');
+            }
+        });
 
-        // Set up the correct paths based on location
-        let basePath, flagsPath;
-
-
-            // We're in the pages directory
-            basePath = '../';
-            flagsPath = '../assets/images/flags/';
-
-            // Set up navigation links
-            document.getElementById('brand-link').href = 'index.html';
-            document.getElementById('employees-link').href = 'dla-pracownikow.html';
-            document.getElementById('companies-link').href = 'dla-firm.html';
-            document.getElementById('contact-link').href = 'kontakt.html';
-
-
-        // Set flag image paths
-        document.getElementById('current-flag').src = flagsPath + 'pl.png';
-        document.getElementById('pl-flag').src = flagsPath + 'pl.png';
-        document.getElementById('ua-flag').src = flagsPath + 'ua.png';
-        document.getElementById('en-flag').src = flagsPath + 'en.png';
+        // Set up language switching
+        const flagsPath = '../assets/images/flags/';
 
         // Apply saved language if any
         const savedLang = localStorage.getItem('selectedLanguage') || 'pl';
@@ -88,29 +74,23 @@
                 // Update flag
                 document.getElementById('current-flag').src = flagsPath + language + '.png';
 
-                // Apply translations if translations object is available
+                // Apply translations if available
                 if (window.translations) {
-                    applyTranslations(language);
+                    const elements = document.querySelectorAll('[data-translate]');
+
+                    elements.forEach(element => {
+                        const key = element.getAttribute('data-translate');
+
+                        if (window.translations[key] && window.translations[key][language]) {
+                            if (element.hasAttribute('placeholder')) {
+                                element.setAttribute('placeholder', window.translations[key][language]);
+                            } else {
+                                element.textContent = window.translations[key][language];
+                            }
+                        }
+                    });
                 }
             });
         });
     });
-
-    // Apply translations to all elements with data-translate attribute
-    function applyTranslations(lang) {
-        const elements = document.querySelectorAll('[data-translate]');
-
-        elements.forEach(element => {
-            const key = element.getAttribute('data-translate');
-
-            // Access the translations object from window scope
-            if (window.translations && window.translations[key] && window.translations[key][lang]) {
-                if (element.hasAttribute('placeholder')) {
-                    element.setAttribute('placeholder', window.translations[key][lang]);
-                } else {
-                    element.textContent = window.translations[key][lang];
-                }
-            }
-        });
-    }
 </script>

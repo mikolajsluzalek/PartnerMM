@@ -48,7 +48,7 @@
         }
 
         .map-container {
-            height: 400px;
+            height: 600px; /* Zwiększona wysokość z 400px na 600px */
             margin-top: 3rem;
             margin-bottom: 3rem;
             border-radius: 5px;
@@ -185,8 +185,11 @@
         <div class="col-lg-6">
             <h2 class="mb-4" data-translate="kontakt_location_title">Lokalizacja</h2>
             <div class="map-container">
-                <!-- Placeholder dla mapy Google -->
-                <img src="/api/placeholder/800/400" alt="Mapa" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                <iframe src="https://storage.googleapis.com/maps-solutions-iimwirphjf/locator-plus/f149/locator-plus.html"
+                        width="100%" height="100%"
+                        style="border:0;"
+                        loading="lazy">
+                </iframe>
             </div>
         </div>
     </div>
@@ -219,7 +222,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Ładowanie nagłówka
+        // Correct path to includes directory
         fetch('../includes/header.html')
             .then(response => {
                 if (!response.ok) {
@@ -230,7 +233,7 @@
             .then(html => {
                 document.getElementById('header-placeholder').innerHTML = html;
 
-                // Po załadowaniu nagłówka, inicjalizuj system języków
+                // Initialize language system after header loads
                 if (typeof LanguageManager !== 'undefined') {
                     setTimeout(() => {
                         LanguageManager.init();
@@ -242,7 +245,7 @@
                 document.getElementById('header-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować nagłówka</div>';
             });
 
-        // Ładowanie stopki
+        // Correct path to includes directory
         fetch('../includes/footer.html')
             .then(response => {
                 if (!response.ok) {
@@ -252,16 +255,6 @@
             })
             .then(html => {
                 document.getElementById('footer-placeholder').innerHTML = html;
-
-                // Popraw ścieżki w linkach stopki dla podstrony
-                document.querySelectorAll('.footer-link').forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && href.startsWith('pages/')) {
-                        link.setAttribute('href', href.replace('pages/', ''));
-                    } else if (href === 'index.html') {
-                        link.setAttribute('href', '../index.html');
-                    }
-                });
             })
             .catch(error => {
                 console.error('Error loading footer:', error);

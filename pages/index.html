@@ -21,7 +21,7 @@
     </div>
     <div class="container hero-content">
         <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
+            <div class="col-lg-10 text-center">
                 <h1 class="hero-title" data-translate="hero_tytul">ZNAJDŹ ➤ ZATRUDNIJ ➤ ROZWIJAJ</h1>
                 <p class="lead mb-4" data-translate="hero_opis_1">Kompleksowe rozwiązania w rekrutacji pracowników tymczasowych dla Twojego biznesu</p>
                 <p data-translate="hero_opis_2">Oferujemy elastyczne zatrudnienie dopasowane do Twoich potrzeb</p>
@@ -187,8 +187,9 @@
 <script src="../assets/js/animations.js"></script>
 
 <script>
+    // Script to load header and footer components
     document.addEventListener('DOMContentLoaded', function() {
-        // Ładowanie nagłówka
+        // Correct path to includes directory
         fetch('../includes/header.html')
             .then(response => {
                 if (!response.ok) {
@@ -211,7 +212,7 @@
                 document.getElementById('header-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować nagłówka</div>';
             });
 
-        // Ładowanie stopki
+        // Correct path to includes directory
         fetch('../includes/footer.html')
             .then(response => {
                 if (!response.ok) {
@@ -221,16 +222,6 @@
             })
             .then(html => {
                 document.getElementById('footer-placeholder').innerHTML = html;
-
-                // Popraw ścieżki w linkach stopki dla podstrony
-                document.querySelectorAll('.footer-link').forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && href.startsWith('pages/')) {
-                        link.setAttribute('href', href.replace('pages/', ''));
-                    } else if (href === 'index.html') {
-                        link.setAttribute('href', 'index.html'); // Already in pages directory
-                    }
-                });
             })
             .catch(error => {
                 console.error('Error loading footer:', error);

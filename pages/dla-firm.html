@@ -361,8 +361,9 @@
 <script src="../assets/js/animations.js"></script>
 
 <script>
+    // Script to load header and footer components
     document.addEventListener('DOMContentLoaded', function() {
-        // Ładowanie nagłówka
+        // Correct path to includes directory
         fetch('../includes/header.html')
             .then(response => {
                 if (!response.ok) {
@@ -373,7 +374,7 @@
             .then(html => {
                 document.getElementById('header-placeholder').innerHTML = html;
 
-                // Po załadowaniu nagłówka, inicjalizuj system języków
+                // Initialize language system after header loads
                 if (typeof LanguageManager !== 'undefined') {
                     setTimeout(() => {
                         LanguageManager.init();
@@ -385,7 +386,7 @@
                 document.getElementById('header-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować nagłówka</div>';
             });
 
-        // Ładowanie stopki
+        // Correct path to includes directory
         fetch('../includes/footer.html')
             .then(response => {
                 if (!response.ok) {
@@ -395,16 +396,6 @@
             })
             .then(html => {
                 document.getElementById('footer-placeholder').innerHTML = html;
-
-                // Popraw ścieżki w linkach stopki dla podstrony
-                document.querySelectorAll('.footer-link').forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && href.startsWith('pages/')) {
-                        link.setAttribute('href', href.replace('pages/', ''));
-                    } else if (href === 'index.html') {
-                        link.setAttribute('href', '../index.html');
-                    }
-                });
             })
             .catch(error => {
                 console.error('Error loading footer:', error);
