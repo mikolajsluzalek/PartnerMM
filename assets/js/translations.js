@@ -270,9 +270,9 @@ window.translations = {
         'en': 'CONTACT'
     },
     'footer_prawa': {
-        'pl': '© 2025 Partner-MM - Agencja Pracy Tymczasowej. Wszelkie prawa zastrzeżone.',
-        'ua': '© 2025 Partner-MM - Агенція тимчасової роботи. Всі права захищені.',
-        'en': '© 2025 Partner-MM - Temporary Employment Agency. All rights reserved.'
+        'pl': '© 2025 JobFlex - Agencja Pracy Tymczasowej. Wszelkie prawa zastrzeżone.',
+        'ua': '© 2025 JobFlex - Агенція тимчасової роботи. Всі права захищені.',
+        'en': '© 2025 JobFlex - Temporary Employment Agency. All rights reserved.'
     },
     'footer_dla_pracownika': {
         'pl': 'DLA PRACOWNIKA',
@@ -284,6 +284,7 @@ window.translations = {
         'ua': 'ДЛЯ КОМПАНІЇ',
         'en': 'FOR COMPANY'
     },
+
     // Języki
     'lang_polski': {
         'pl': 'Polski',
@@ -450,9 +451,9 @@ window.translations = {
         'en': 'Flexible solutions for hiring temporary employees'
     },
     'firmy_benefits_title': {
-        'pl': 'Korzyści ze współpracy z Partner-MM',
-        'ua': 'Переваги співпраці з Partner-MM',
-        'en': 'Benefits of cooperation with Partner-MM'
+        'pl': 'Korzyści ze współpracy z JobFlex',
+        'ua': 'Переваги співпраці з JobFlex',
+        'en': 'Benefits of cooperation with JobFlex'
     },
     'firmy_benefit1_title': {
         'pl': 'Redukcja kosztów',
@@ -822,6 +823,7 @@ window.translations = {
         'en': 'APPLY NOW'
     }
 };
+// Make translations globally available
 
 /**
  * Simple utility function to directly apply translations

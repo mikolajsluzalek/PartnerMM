@@ -23,7 +23,7 @@
 }
 /* Update the hero section top margin to create space for the navbar */
 .hero-section {
-    margin-top: 90px !important; /* Increased from 70px to give more space */
+    margin-top: 67px !important; /* Increased from 70px to give more space */
     padding-top: 5rem;
 }
 
