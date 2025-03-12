@@ -54,6 +54,42 @@
     z-index: 1030 !important; /* Make sure navbar stays on top */
 }
 
+@media (max-width: 767px) {
+    .benefit-item {
+        display: flex !important;
+        align-items: center !important;
+        margin-bottom: 1.5rem !important;
+        width: 100% !important;
+    }
+
+    .benefit-icon {
+        background-color: #3498db !important;
+        color: white !important;
+        width: 50px !important;
+        height: 50px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.5rem !important;
+        margin-right: 1rem !important;
+        flex-shrink: 0 !important; /* Zapobiega kurczeniu się ikony */
+    }
+
+    .benefit-item div:last-child {
+        flex-grow: 1 !important; /* Treść zajmuje dostępną przestrzeń */
+    }
+
+    .benefit-item h4 {
+        margin-top: 0 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .benefit-item p {
+        margin-bottom: 0 !important;
+    }
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -267,4 +303,125 @@ body {
     border-bottom-right-radius: 4px;
     background-color: #3498db;
     border-color: #3498db;
+}
+/* Dodaj te style do pliku assets/css/navbar.css */
+
+@media (max-width: 991.98px) {
+    /* Naprawia pozycjonowanie rozwijanego menu */
+    .navbar-collapse {
+        position: absolute;
+        top: 100%; /* Ustawia menu tuż pod navbarem */
+        right: 0; /* Wyrównuje do prawej strony */
+        width: 100%;
+        background-color: rgba(14, 22, 40, 0.95); /* Ten sam kolor co navbar */
+        z-index: 1030; /* Zapewnia, że menu będzie powyżej innych elementów */
+        padding: 1rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Dodaje lekki cień dla lepszego wyglądu */
+    }
+
+    /* Wyrównuje elementy menu do prawej strony */
+    .navbar-nav {
+        text-align: right;
+        width: 100%;
+    }
+
+    /* Poprawia wygląd linków nawigacyjnych */
+    .nav-link {
+        padding: 0.5rem 0;
+        margin: 0.25rem 0;
+    }
+
+    /* Pozycjonuje dropdown języków */
+    .language-selector {
+        margin-left: auto;
+        margin-right: 0;
+        text-align: right;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 0.5rem;
+    }
+
+    /* Poprawia pozycjonowanie przycisku języka */
+    .language-selector .dropdown-toggle {
+        padding-right: 0;
+    }
+
+    /* Poprawia pozycjonowanie menu dropdown języków */
+    .language-selector .dropdown-menu {
+        left: auto !important;
+        right: 0 !important;
+        margin-top: 0.5rem;
+    }
+}
+/* Dodaj te style do pliku assets/css/navbar.css */
+
+/* Poprawki dla selektora języka - pełne wyrównanie do prawej */
+.language-selector {
+    display: flex;
+    justify-content: flex-end; /* Wyrównuje zawartość do prawej */
+}
+
+.language-selector .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Wyrównuje zawartość przycisku do prawej */
+
+}
+
+/* Wyrównanie menu dropdown do prawej strony */
+.language-selector .dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    text-align: right;
+    min-width: 160px;
+}
+
+/* Wyrównanie elementów menu języków do prawej */
+.language-selector .dropdown-item {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Poprawia kolejność elementów w dropdown-item */
+.language-selector .dropdown-item img {
+    order: 2;
+    margin-left: 0;
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.language-selector .dropdown-item span {
+    order: 1;
+}
+
+@media (max-width: 991.98px) {
+    /* Zmień te style dla language-selector */
+    .language-selector {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: right;
+        padding-top: 0.5rem;
+        padding-right: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 0.5rem;
+        width: 100%;
+        display: block;
+    }
+
+    /* Zmień te style */
+    .navbar .language-selector {
+        width: 100%;
+        display: block;
+        padding-right: 0;
+    }
+
+    /* Dodaj tę regułę */
+    .language-selector .dropdown-toggle {
+        padding-right: 0;
+        margin-right: 0;
+        float: right;
+        clear: both;
+    }
 }
