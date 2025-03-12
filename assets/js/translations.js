@@ -199,9 +199,9 @@ window.translations = {
         'en': 'We use the latest technologies and methods to provide you with the best employees'
     },
     'cta_button': {
-        'pl': 'ZAPISZ SIĘ NA BETA TESTY',
-        'ua': 'ЗАРЕЄСТРУЙТЕСЯ НА БЕТА-ТЕСТУВАННЯ',
-        'en': 'SIGN UP FOR BETA TESTS'
+        'pl': 'ZAPYTAJ O OFERTĘ',
+        'ua': 'ЗАПИТАЙТЕ ПРО ПРОПОЗИЦІЮ',
+        'en': 'ASK ABOUT THE OFFER'
     },
 
     // Trust Section
@@ -318,15 +318,25 @@ window.translations = {
         'ua': 'Телефон',
         'en': 'Phone'
     },
+    'kontakt_person1': {
+        'pl': 'Karina Ryszkowska spec. ds. HR',
+        'ua': 'Каріна Ришковська спец. з HR',
+        'en': 'Karina Ryszkowska HR Specialist'
+    },
+    'kontakt_person2': {
+        'pl': 'Viktoriia Haivoronska spec. ds. HR i BHP',
+        'ua': 'Вікторія Гайворонська спец. з HR та ОП',
+        'en': 'Viktoriia Haivoronska HR and Health & Safety Specialist'
+    },
     'kontakt_phone_number': {
         'pl': '+48 572 556 870',
         'ua': '+48 572 556 870',
         'en': '+48 572 556 870'
     },
     'kontakt_phone_hours': {
-        'pl': 'Pon-Pt: 8:00 - 16:00',
-        'ua': 'Пн-Пт: 8:00 - 16:00',
-        'en': 'Mon-Fri: 8:00 - 16:00'
+        'pl': 'Pon-Pt: 9:00 - 15:00',
+        'ua': 'Пн-Пт: 9:00 - 15:00',
+        'en': 'Mon-Fri: 9:00 - 15:00'
     },
     'kontakt_email_title': {
         'pl': 'Email',
@@ -616,7 +626,7 @@ window.translations = {
         'en': 'How quickly can I get employees?'
     },
     'firmy_faq2_a': {
-        'pl': 'W przypadku stanowisk niewymagających specjalistycznych kwalifikacji, jesteśmy w stanie dostarczyć pracowników w najkrótszym możliwym terminie.',
+        'pl': 'W przypadku stanowisk niewymagających specjalistycznych kwalifikacji, jesteśmy w stanie zapewnić pracowników w najkrótszym możliwym terminie.',
         'ua': 'У випадку посад, що не вимагають спеціалізованої кваліфікації, ми можемо надати працівників у найкоротший можливий термін.',
         'en': 'For positions that do not require specialized qualifications, we are able to provide employees in the shortest possible time.'
     },
@@ -626,7 +636,7 @@ window.translations = {
         'en': 'Can I hire a temporary employee permanently?'
     },
     'firmy_faq3_a': {
-        'pl': 'Tak, po określonym w umowie okresie pracy tymczasowej, możesz zatrudnić pracownika bezpośrednio. W ramach naszych usług oferujemy także model "temp-to-perm", czyli pracę tymczasową z możliwością przejścia na etat po okresie próbnym. Szczegóły takich umów są dostarczane indywidualnie, wymagamy deklaracje chęci takiego podejścia prez klienta',
+        'pl': 'Tak, po określonym w umowie okresie pracy tymczasowej, możesz zatrudnić pracownika bezpośrednio. W ramach naszych usług oferujemy także model "temp-to-perm", czyli pracę tymczasową z możliwością przejścia na etat po okresie próbnym. Szczegóły takich umów są ustalane indywidualnie, wymagamy deklaracje chęci takiego podejścia prez klienta',
         'ua': 'Так, після визначеного в договорі періоду тимчасової роботи, ви можете прийняти працівника безпосередньо. В рамках наших послуг ми також пропонуємо модель "temp-to-perm", тобто тимчасову роботу з можливістю переходу на постійну після випробувального терміну. Деталі таких договорів надаються індивідуально, ми вимагаємо заяви про бажання такого підходу від клієнта',
         'en': 'Yes, after a period of temporary work specified in the contract, you can hire the employee directly. As part of our services, we also offer a "temp-to-perm" model, i.e. temporary work with the possibility of moving to full-time after a trial period. The details of such contracts are provided individually, we require a declaration of willingness for such an approach from the client'
     },
@@ -773,9 +783,9 @@ window.translations = {
         'en': 'Legal Employment'
     },
     'pracownicy_benefit1_desc': {
-        'pl': 'Zawarcie umowy, pełne ubezpieczenie, wszystkie składki opłacone.',
-        'ua': 'Укладення договору, повне страхування, всі внески сплачені.',
-        'en': 'Contract conclusion, full insurance, all contributions paid.'
+        'pl': 'Zawarcie umowy, pełne ubezpieczenie, legalny pobyt cudzoziemców',
+        'ua': 'Укладення договору, повне страхування, легальне перебування іноземців',
+        'en': 'Contract conclusion, full insurance, legal stay for foreigners'
     },
     'pracownicy_benefit2_title': {
         'pl': 'Terminowe Wynagrodzenie',
@@ -783,7 +793,7 @@ window.translations = {
         'en': 'Timely Salary'
     },
     'pracownicy_benefit2_desc': {
-        'pl': 'Gwarantujemy wypłatę na czas, bez opóźnień, zawsze zgodną z umową.',
+        'pl': 'Gwarantujemy wypłatę na czas, bez opóźnień, zawsze zgodnie z umową.',
         'ua': 'Ми гарантуємо своєчасну виплату, без затримок, завжди відповідно до договору.',
         'en': 'We guarantee payment on time, without delays, always as agreed.'
     },
@@ -793,9 +803,9 @@ window.translations = {
         'en': 'Flexible Schedule'
     },
     'pracownicy_benefit3_desc': {
-        'pl': 'Praca z zmiennymi godzinami pracy.',
-        'ua': 'Робота зі змінними годинами роботи.',
-        'en': 'Work with variable working hours.'
+        'pl': 'Praca zmianowa i w godzinach nocnych',
+        'ua': 'Змінна робота та робота в нічний час',
+        'en': 'Shift work and night hours'
     },
     'pracownicy_benefit4_title': {
         'pl': 'Rozwój Zawodowy',

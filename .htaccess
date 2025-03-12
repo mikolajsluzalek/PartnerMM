@@ -1,0 +1,15 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Redirect root to index.html without showing filename
+RewriteRule ^$ index.html [L]
+
+# Redirect /pages URLs to clean URLs
+RewriteRule ^dla-pracownika$ pages/dla-pracownikow.html [L]
+RewriteRule ^dla-firmy$ pages/dla-firm.html [L]
+RewriteRule ^kontakt$ pages/kontakt.html [L]
+
+# Remove .html extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
