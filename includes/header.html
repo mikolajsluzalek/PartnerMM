@@ -1,7 +1,7 @@
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html" id="brand-link">PARTNER</a>
+        <a class="navbar-brand" href="../index.html" id="brand-link">PARTNER</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -43,6 +43,18 @@
 </nav>
 
 <script>
+    // Fix brand link path on document load
+    document.addEventListener('DOMContentLoaded', function() {
+        const brandLink = document.getElementById('brand-link');
+        // Check if we're in the pages directory or root
+        const isInSubdir = window.location.pathname.includes('/pages/');
+
+        if (!isInSubdir) {
+            // If we're at root level, adjust the link
+            brandLink.setAttribute('href', 'index.html');
+        }
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         // Highlight active link based on current page
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';

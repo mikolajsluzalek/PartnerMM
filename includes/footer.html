@@ -22,16 +22,10 @@
     <div class="container">
         <div class="row mb-4">
             <div class="col-md-6 text-md-start text-center mb-3 mb-md-0">
-                <a href="index.html" class="footer-link" data-translate="footer_home">STRONA GŁÓWNA</a>
+                <a href="../index.html" class="footer-link" data-translate="footer_home">STRONA GŁÓWNA</a>
                 <a href="dla-pracownikow.html" class="footer-link" data-translate="footer_dla_pracownika">DLA PRACOWNIKA</a>
                 <a href="dla-firm.html" class="footer-link" data-translate="footer_dla_firmy">DLA FIRMY</a>
                 <a href="kontakt.html" class="footer-link" data-translate="footer_kontakt">KONTAKT</a>
-            </div>
-            <div class="col-md-6 text-md-end text-center">
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
         <div class="row">
@@ -41,3 +35,17 @@
         </div>
     </div>
 </footer>
+
+<script>
+    // Fix brand link path on document load
+    document.addEventListener('DOMContentLoaded', function() {
+        const brandLink = document.getElementById('brand-link');
+        // Check if we're in the pages directory or root
+        const isInSubdir = window.location.pathname.includes('/pages/');
+
+        if (!isInSubdir) {
+            // If we're at root level, adjust the link
+            brandLink.setAttribute('href', 'index.html');
+        }
+    });
+</script>
