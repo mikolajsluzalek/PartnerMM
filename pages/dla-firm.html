@@ -66,27 +66,6 @@
             padding: 4rem 0;
         }
 
-        .industry-card {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 5px;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            margin-bottom: 2rem;
-            transition: all 0.3s;
-        }
-
-        .industry-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .industry-icon {
-            font-size: 3rem;
-            color: #3498db;
-            margin-bottom: 1.5rem;
-        }
-
         .faq-section {
             padding: 4rem 0;
         }
@@ -251,32 +230,29 @@
 
         <div class="row">
             <div class="col-md-4">
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-industry"></i>
+                <div class="industry-card industry-production">
+                    <div class="industry-content">
+                        <h3 data-translate="firmy_industry1_title">Produkcja</h3>
+                        <p data-translate="firmy_industry1_desc">Pracownicy linii produkcyjnych, operatorzy maszyn, montażyści, kontrolerzy jakości</p>
                     </div>
-                    <h3 data-translate="firmy_industry1_title">Produkcja</h3>
-                    <p data-translate="firmy_industry1_desc">Pracownicy linii produkcyjnych, operatorzy maszyn, montażyści, kontrolerzy jakości</p>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-truck"></i>
+                <div class="industry-card industry-logistics">
+                    <div class="industry-content">
+                        <h3 data-translate="firmy_industry2_title">Logistyka</h3>
+                        <p data-translate="firmy_industry2_desc">Pracownicy magazynowi, operatorzy wózków widłowych, pakowacze, kompletatorzy zamówień</p>
                     </div>
-                    <h3 data-translate="firmy_industry2_title">Logistyka</h3>
-                    <p data-translate="firmy_industry2_desc">Pracownicy magazynowi, operatorzy wózków widłowych, pakowacze, kompletatorzy zamówień</p>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="industry-card">
-                    <div class="industry-icon">
-                        <i class="fas fa-broom"></i>
+                <div class="industry-card industry-services">
+                    <div class="industry-content">
+                        <h3 data-translate="firmy_industry6_title">Usługi</h3>
+                        <p data-translate="firmy_industry6_desc">Pracownicy sprzątający, ochrona, konserwatorzy, pracownicy techniczni</p>
                     </div>
-                    <h3 data-translate="firmy_industry6_title">Usługi</h3>
-                    <p data-translate="firmy_industry6_desc">Pracownicy sprzątający, ochrona, konserwatorzy, pracownicy techniczni</p>
                 </div>
             </div>
         </div>
@@ -342,16 +318,14 @@
     </section>
 
     <!-- Contact CTA -->
-    <section class="contact-cta container">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="contact-cta-title" data-translate="firmy_ready_title">Gotowy do współpracy?</h2>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <p class="lead mb-4" data-translate="firmy_ready_desc">Skontaktuj się z nami, a nasz konsultant przedstawi Ci szczegółową ofertę dopasowaną do potrzeb Twojej firmy.</p>
-                <a href="kontakt.html" class="btn btn-primary px-4 py-2" data-translate="firmy_contact_button">SKONTAKTUJ SIĘ Z NAMI</a>
+    <section class="contact-cta">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 data-translate="firmy_ready_title"></h2>
+                    <p class="lead mb-4" data-translate="firmy_ready_desc"></p>
+                    <a href="/kontakt" class="btn btn-primary px-4 py-2" data-translate="firmy_contact_button"></a>
+                </div>
             </div>
         </div>
     </section>
@@ -424,20 +398,6 @@
                     icon.classList.remove('fa-chevron-down');
                     icon.classList.add('fa-chevron-up');
                 }
-            });
-        });
-
-        // Industry card hover effect
-        document.querySelectorAll('.industry-card').forEach(card => {
-            const icon = card.querySelector('.industry-icon i');
-
-            card.addEventListener('mouseenter', function() {
-                icon.style.transform = 'scale(1.2)';
-                icon.style.transition = 'transform 0.3s';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                icon.style.transform = 'scale(1)';
             });
         });
     });

@@ -20,7 +20,7 @@ window.translations = {
     // Sekcja hero
     'hero_tytul': {
         'pl': 'ZNAJDŹ ➤ ZATRUDNIJ ➤ ROZWIJAJ',
-        'ua': 'ЗНАЙТИ ➤ НАЙНЯТИ ➤ РОЗВИВАТИ',
+        'ua': 'ЗНАЙДИ ➤ ПРАЦЕВЛАШТУЙ ➤ РОЗВИВАЙСЯ',
         'en': 'FIND ➤ HIRE ➤ DEVELOP'
     },
     'hero_opis_1': {
@@ -37,17 +37,17 @@ window.translations = {
     // Proces section
     'process_znajdz': {
         'pl': 'ZNAJDŹ',
-        'ua': 'ЗНАЙТИ',
+        'ua': 'ЗНАЙДИ',
         'en': 'FIND'
     },
     'process_zatrudnij': {
         'pl': 'ZATRUDNIJ',
-        'ua': 'НАЙНЯТИ',
+        'ua': 'ПРАЦЕВЛАШТУЙ',
         'en': 'HIRE'
     },
     'process_rozwijaj': {
         'pl': 'ROZWIJAJ',
-        'ua': 'РОЗВИВАТИ',
+        'ua': 'РОЗВИВАЙСЯ',
         'en': 'DEVELOP'
     },
     'process_tytul': {
@@ -64,7 +64,7 @@ window.translations = {
     // Usługi
     'services_znajdz_tytul': {
         'pl': 'ZNAJDŹ',
-        'ua': 'ЗНАЙТИ',
+        'ua': 'ЗНАЙДИ',
         'en': 'FIND'
     },
     'services_znajdz_opis': {
@@ -74,22 +74,22 @@ window.translations = {
     },
     'services_zatrudnij_tytul': {
         'pl': 'ZATRUDNIJ',
-        'ua': 'НАЙНЯТИ',
+        'ua': 'ПРАЦЕВЛАШТУЙ',
         'en': 'HIRE'
     },
     'services_zatrudnij_opis': {
         'pl': 'Zajmujemy się całym procesem zatrudnienia - od rekrutacji przez weryfikację, po szkolenia i formalności. Zatrudniamy pracownika na nasz etat i delegujemy go do pracy u Ciebie.',
-        'ua': 'Ми займаємося всім процесом найму - від набору через перевірку до навчання та формальностей. Ми наймаємо працівника на нашу зарплату та делегуємо його на роботу до вас.',
+        'ua': 'Ми займаємося всім процесом працевлаштування - від рекрутингу з верефікацією до навчання та формальностей. Ми приймаємо на роботу працівника та делегуємо його на роботу до вас.',
         'en': 'We handle the entire employment process - from recruitment through verification, to training and formalities. We employ the worker on our payroll and delegate them to work for you.'
     },
     'services_rozwijaj_tytul': {
         'pl': 'ROZWIJAJ',
-        'ua': 'РОЗВИВАТИ',
+        'ua': 'РОЗВИВАЙСЯ',
         'en': 'DEVELOP'
     },
     'services_rozwijaj_opis': {
         'pl': 'Dzięki elastycznym formom zatrudnienia możesz sprawnie reagować na potrzeby rynku, rozwijać swój biznes bez dodatkowych obciążeń administracyjnych i kadrowych.',
-        'ua': 'Завдяки гнучким формам зайнятості ви можете ефективно реагувати на потреби ринку, розвивати свій бізнес без додаткового адміністративного та кадрового навантаження.',
+        'ua': 'Завдяки гнучким формам працевлаштування ви можете ефективно реагувати на потреби ринку, розвивати свій бізнес без додаткового адміністративного та кадрового навантаження.',
         'en': 'Thanks to flexible forms of employment, you can efficiently respond to market needs, develop your business without additional administrative and HR burdens.'
     },
 
@@ -101,7 +101,7 @@ window.translations = {
     },
     'rekrutacja_opis': {
         'pl': 'Nasz system zapewnia szybkie i efektywne dopasowanie kandydatów do wymagań klienta',
-        'ua': 'Наша система забезпечує швидке та ефективне підбір кандидатів до вимог клієнта',
+        'ua': 'Наша система забезпечує швидкий та ефективний підбір кандидатів до вимог клієнта',
         'en': 'Our system ensures quick and effective matching of candidates to client requirements'
     },
     'rekrutacja_wiecej': {
@@ -212,7 +212,7 @@ window.translations = {
     },
     'trust_opis': {
         'pl': 'FIRMY KORZYSTAJĄCE Z NASZYCH USŁUG',
-        'ua': 'КОМПАНІЇ, ЯКІ ВИКОРИСТОВУЮТЬ НАШІ ПОСЛУГИ',
+        'ua': 'КОМПАНІЇ ЯКІ КОРИСТУЮТЬСЯ З НАШИХ ПОСЛУГ ',
         'en': 'COMPANIES USING OUR SERVICES'
     },
     'trust_email_placeholder': {
@@ -325,7 +325,7 @@ window.translations = {
     },
     'kontakt_person2': {
         'pl': 'Viktoriia Haivoronska spec. ds. HR i BHP',
-        'ua': 'Вікторія Гайворонська спец. з HR та ОП',
+        'ua': 'Вікторія Гайворонська спец. з HR та охорони здоров\'я та безпеки',
         'en': 'Viktoriia Haivoronska HR and Health & Safety Specialist'
     },
     'kontakt_phone_number': {
@@ -415,7 +415,7 @@ window.translations = {
     },
     'kontakt_form_subject_option4': {
         'pl': 'Reklamacja',
-        'ua': 'Рекламація',
+        'ua': 'Скарги',
         'en': 'Complaint'
     },
     'kontakt_form_message': {
@@ -457,7 +457,7 @@ window.translations = {
     },
     'firmy_subtitle': {
         'pl': 'Elastyczne rozwiązania w zakresie zatrudniania pracowników tymczasowych',
-        'ua': 'Гнучкі рішення щодо найму тимчасових працівників',
+        'ua': 'Гнучкі рішення щодо працевлаштування тимчасових працівників',
         'en': 'Flexible solutions for hiring temporary employees'
     },
     'firmy_benefits_title': {
@@ -512,7 +512,7 @@ window.translations = {
     },
     'firmy_benefit5_desc': {
         'pl': 'Dopasowujemy liczbę pracowników do aktualnych potrzeb Twojej firmy. Możliwość szybkiego zwiększenia lub zmniejszenia zespołu bez konsekwencji prawnych.',
-        'ua': 'Ми пристосовуємо кількість працівників до поточних потреб вашої компанії. Можливість швидкого збільшення або зменшення команди без юридичних наслідків.',
+        'ua': 'Ми пристосовуємо кількість працівників до поточних потреб вашої компанії.',
         'en': 'We adjust the number of employees to the current needs of your company. Possibility to quickly increase or decrease the team without legal consequences.'
     },
     'firmy_benefit6_title': {
@@ -522,7 +522,7 @@ window.translations = {
     },
     'firmy_benefit6_desc': {
         'pl': 'Zajmujemy się wszystkimi formalnościami - od rekrutacji przez umowy, badania lekarskie, szkolenia BHP po rozliczenia i ewidencję czasu pracy.',
-        'ua': 'Ми займаємося всіма формальностями - від рекрутингу через контракти, медичні огляди, навчання з охорони праці до розрахунків та обліку робочого часу.',
+        'ua': 'Ми займаємося всіма формальностями - від рекрутингу включаючи контракти, медичні огляди, навчання з охорони здоров\'я і безпеки праці до розрахунків та обліку робочого часу..',
         'en': 'We handle all formalities - from recruitment through contracts, medical examinations, health and safety training to settlements and time records.'
     },
     'firmy_process_title': {
@@ -592,7 +592,7 @@ window.translations = {
     },
     'firmy_industry2_desc': {
         'pl': 'Pracownicy magazynowi, operatorzy wózków widłowych, pakowacze, kompletatorzy zamówień',
-        'ua': 'Складські працівники, оператори вилочних навантажувачів, пакувальники, комплектувальники замовлень',
+        'ua': 'Працівники складів, оператори вилочних навантажувачів, пакувальники, комплектувальники замовлень',
         'en': 'Warehouse workers, forklift operators, packers, order pickers'
     },
     'firmy_industry6_title': {
@@ -612,7 +612,7 @@ window.translations = {
     },
     'firmy_faq1_q': {
         'pl': 'Ile kosztuje zatrudnienie pracownika tymczasowego?',
-        'ua': 'Скільки коштує найм тимчасового працівника?',
+        'ua': 'Скільки коштує працевлаштування тимчасового працівника?',
         'en': 'How much does it cost to hire a temporary employee?'
     },
     'firmy_faq1_a': {
@@ -657,7 +657,7 @@ window.translations = {
     },
     'firmy_faq5_a': {
         'pl': 'Zapewniamy pracownikom szkolenia wstępne BHP oraz ogólne wprowadzenie do obowiązków. Natomiast szkolenia stanowiskowe oraz wdrożenie w specyfikę pracy w Twojej firmie leżą po stronie klienta. Jesteśmy otwarci na dostosowanie tego podziału do indywidualnych potrzeb.',
-        'ua': 'Ми забезпечуємо працівникам початкове навчання з охорони праці та загальне введення в обов\'язки. Однак позиційне навчання та впровадження в специфіку роботи у вашій компанії лежать на стороні клієнта. Ми відкриті для адаптації цього розподілу до індивідуальних потреб.',
+        'ua': 'Ми забезпечуємо працівникам початкове навчання з охорони здоров\'я і безпеки праці та ознайомлюємо з обов\'язками. Однак навчання на робочому місці та ознайомлення зі специфікою роботи у вашій компанії лежать на стороні клієнта. Ми відкриті для адаптації цього розподілу до індивідуальних потреб.',
         'en': 'We provide employees with initial health and safety training and a general introduction to responsibilities. However, job-specific training and implementation into the specifics of work in your company are on the client\'s side. We are open to adapting this division to individual needs.'
     },
     'firmy_ready_title': {
@@ -729,7 +729,7 @@ window.translations = {
     },
     'pracownicy_logistyka_1': {
         'pl': 'Pracownicy magazynowi',
-        'ua': 'Складські працівники',
+        'ua': 'Працівники складу',
         'en': 'Warehouse workers'
     },
     'pracownicy_logistyka_2': {
@@ -779,7 +779,7 @@ window.translations = {
     },
     'pracownicy_benefit1_title': {
         'pl': 'Legalność Zatrudnienia',
-        'ua': 'Легальність Працевлаштування',
+        'ua': 'Легальність працевлаштування',
         'en': 'Legal Employment'
     },
     'pracownicy_benefit1_desc': {
@@ -789,7 +789,7 @@ window.translations = {
     },
     'pracownicy_benefit2_title': {
         'pl': 'Terminowe Wynagrodzenie',
-        'ua': 'Своєчасна Оплата',
+        'ua': 'Своєчасна оплата',
         'en': 'Timely Salary'
     },
     'pracownicy_benefit2_desc': {
@@ -799,17 +799,17 @@ window.translations = {
     },
     'pracownicy_benefit3_title': {
         'pl': 'Elastyczny Grafik',
-        'ua': 'Гнучкий Графік',
+        'ua': 'Гнучкий графік',
         'en': 'Flexible Schedule'
     },
     'pracownicy_benefit3_desc': {
         'pl': 'Praca zmianowa i w godzinach nocnych',
-        'ua': 'Змінна робота та робота в нічний час',
+        'ua': 'Робота на змінах та в нічний час',
         'en': 'Shift work and night hours'
     },
     'pracownicy_benefit4_title': {
         'pl': 'Rozwój Zawodowy',
-        'ua': 'Професійний Розвиток',
+        'ua': 'Професійний розвиток',
         'en': 'Professional Development'
     },
     'pracownicy_benefit4_desc': {
@@ -819,7 +819,7 @@ window.translations = {
     },
     'pracownicy_ready_title': {
         'pl': 'Gotowy, by rozpocząć swoją nową pracę?',
-        'ua': 'Готові розпочати свою нову роботу?',
+        'ua': 'Готові розпочати співпрацю з нами?',
         'en': 'Ready to start your new job?'
     },
     'pracownicy_ready_desc': {
