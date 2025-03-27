@@ -185,6 +185,7 @@
 <script src="../assets/js/animations.js"></script>
 
 <script>
+
     // Script to load header and footer components
     document.addEventListener('DOMContentLoaded', function() {
         // Correct path to includes directory
@@ -225,6 +226,61 @@
                 console.error('Error loading footer:', error);
                 document.getElementById('footer-placeholder').innerHTML = '<div class="alert alert-danger">Nie można załadować stopki</div>';
             });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const offerRequestForm = document.querySelector('.trust-section form');
+
+        if (offerRequestForm) {
+            offerRequestForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const emailInput = this.querySelector('input[type="email"]');
+                const email = emailInput.value.trim();
+
+                if (!email) {
+                    alert('Please enter your email');
+                    return;
+                }
+
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+
+                // Disable button and show loading state
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+
+                try {
+                    const response = await fetch('https://api.partner-mm.pl/api/offer-request', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email })
+                    });
+
+                    const data = await response.json();
+
+                    // Restore button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+
+                    if (data.success) {
+                        alert('Your offer request has been sent. We will contact you soon!');
+                        this.reset();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                } catch (error) {
+                    console.error('Offer request form error:', error);
+                    alert('An error occurred. Please try again later.');
+
+                    // Restore button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }
+            });
+        }
     });
 </script>
 </body>

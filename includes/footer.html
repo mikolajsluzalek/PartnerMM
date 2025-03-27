@@ -48,4 +48,59 @@
             brandLink.setAttribute('href', 'index.html');
         }
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const newsletterForm = document.querySelector('.newsletter-form');
+
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const emailInput = this.querySelector('input[type="email"]');
+                const email = emailInput.value.trim();
+
+                if (!email) {
+                    alert('Please enter your email');
+                    return;
+                }
+
+                const submitButton = this.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+
+                // Disable button and show loading state
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+
+                try {
+                    const response = await fetch('https://api.partner-mm.pl/api/newsletter', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email })
+                    });
+
+                    const data = await response.json();
+
+                    // Restore button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+
+                    if (data.success) {
+                        alert('Thank you for subscribing to our newsletter!');
+                        this.reset();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                } catch (error) {
+                    console.error('Newsletter form error:', error);
+                    alert('An error occurred. Please try again later.');
+
+                    // Restore button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalText;
+                }
+            });
+        }
+    });
 </script>
